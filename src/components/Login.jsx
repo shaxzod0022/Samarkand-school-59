@@ -1,6 +1,6 @@
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Button from "./Button";
-import { useEffect, useState, useCallback } from "react";
 import { styles } from "../util/styles";
 import { logo } from "../assets";
 import axios from "axios";
@@ -15,7 +15,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData.value);
 
-  // Foydalanuvchilarni olish funksiyasi
   const getUsers = useCallback(async () => {
     try {
       const response = await axios.get(
@@ -23,7 +22,7 @@ const Login = () => {
       );
       dispatch(createUsers(response.data));
     } catch (error) {
-      console.error("Foydalanuvchilarni olishda xatolik yuz berdi:", error);
+      console.error("Foydalanuvchilarni olishda xatolik:", error);
     }
   }, [dispatch]);
 
@@ -39,6 +38,8 @@ const Login = () => {
   }, [navigate]);
 
   // 1 daqiqa (60000 ms) vaqtni belgilash
+  const expiryTime = 1 * 60 * 1000; // 1 daqiqa
+
   const resetLogoutTimeout = useCallback(() => {
     clearTimeout(window.logoutTimeout); // Oldingi timeoutni tozalash
     window.logoutTimeout = setTimeout(() => {
@@ -49,7 +50,7 @@ const Login = () => {
       );
       navigate("/"); // Login sahifasiga qaytarish
     }, expiryTime);
-  }, [expiryTime, navigate]); // expiryTime ni dependency array'ga qo'shdik
+  }, [expiryTime, navigate]);
 
   useEffect(() => {
     const events = ["mousemove", "keypress", "click", "scroll"];
@@ -57,16 +58,17 @@ const Login = () => {
       window.addEventListener(event, resetLogoutTimeout);
     });
 
+    // Komponent chiqayotganida barcha hodisalarni tozalash
     return () => {
       events.forEach((event) => {
         window.removeEventListener(event, resetLogoutTimeout);
       });
-      clearTimeout(window.logoutTimeout);
+      clearTimeout(window.logoutTimeout); // Komponent chiqishida timeoutni tozalash
     };
   }, [resetLogoutTimeout]);
 
   const navigationHomePage = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Default form behavior'ini to'xtatish
 
     const user = userData.find(
       (user) =>
@@ -77,10 +79,11 @@ const Login = () => {
       setError(null);
       localStorage.setItem("userData", JSON.stringify(user));
 
+      // Foydalanuvchi rolini tekshirish va mos yo'nalishni belgilash
       if (user.role === "teacher") {
-        navigate(`home_page/teacher/${user.id}`);
+        navigate(`home_page/teacher/${user.id}`); // O'qituvchi uchun
       } else {
-        navigate(`home_page/${user.id}`);
+        navigate(`home_page/${user.id}`); // O'quvchi uchun
       }
     } else {
       setError("Login yoki parol noto'g'ri!");
@@ -90,22 +93,19 @@ const Login = () => {
   return (
     <div className={`${styles.container} h-[100vh] bg-slate-100`}>
       <div
-        className={`max-w-[380px] w-[310px] sm:w-full text-center absolute translate-y-[-50%] translate-x-[-50%] left-[50%] top-[50%] bg-white rounded-lg border-2 border-formaColor card-box-shadow p-4 ${styles.fCol}`}
+        className={`max-w-[380px] w-[310px] sm:w-full text-center absolute translate-y-[-50%] translate-x-[-50%] left-[50%] top-[50%] bg-white rounded-lg boeder-2 border-formaColor card-box-shadow p-4 ${styles.fCol}`}
       >
         <div className={`w-full flex items-center flex-col mb-3`}>
           <img
             className="sm:w-[60px] w-[50px] sm:h-[60px] h-[50px]"
             src={logo}
-            alt="Logo"
+            alt=""
           />
         </div>
         <h2 className={`${styles.heading3} mb-3`}>
           O'qituvchi va o'quvchilar uchun
         </h2>
-        <form
-          className="w-full flex flex-col gap-2"
-          onSubmit={navigationHomePage}
-        >
+        <form className="w-full flex flex-col gap-2" action="" method="post">
           <input
             value={valueLogin}
             onChange={(e) => setValueLogin(e.target.value)}
@@ -141,7 +141,11 @@ const Login = () => {
               </span>
             )}
           </div>
-          <Button title="Kirish" className={`w-full`} type="submit" />
+          <Button
+            title="Kirish"
+            className={`w-full`}
+            onClick={navigationHomePage}
+          />
         </form>
       </div>
     </div>
