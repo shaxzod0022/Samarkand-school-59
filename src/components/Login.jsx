@@ -28,7 +28,7 @@ const Login = () => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [getUsers]);
 
   useEffect(() => {
     const user = localStorage.getItem("userData");
@@ -67,7 +67,7 @@ const Login = () => {
       });
       clearTimeout(logoutTimeout); // Komponent chiqishida timeoutni tozalash
     };
-  }, []);
+  }, [logoutTimeout, resetLogoutTimeout]);
 
   const navigationHomePage = (e) => {
     e.preventDefault(); // Default form behavior'ini to'xtatish
