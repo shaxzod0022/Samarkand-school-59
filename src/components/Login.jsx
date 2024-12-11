@@ -39,18 +39,17 @@ const Login = () => {
   }, [navigate]);
 
   // 1 daqiqa (60000 ms) vaqtni belgilash
-  const expiryTime = 1 * 60 * 1000;
   const resetLogoutTimeout = useCallback(() => {
-    clearTimeout(window.logoutTimeout);
+    clearTimeout(window.logoutTimeout); // Oldingi timeoutni tozalash
     window.logoutTimeout = setTimeout(() => {
       localStorage.removeItem("userData");
       localStorage.removeItem("loginTime");
       alert(
         "Siz 1 daqiqa davomida faol bo'lmagansiz. Kirish sahifasiga qaytdingiz."
       );
-      navigate("/");
+      navigate("/"); // Login sahifasiga qaytarish
     }, expiryTime);
-  }, [navigate]);
+  }, [expiryTime, navigate]); // expiryTime ni dependency array'ga qo'shdik
 
   useEffect(() => {
     const events = ["mousemove", "keypress", "click", "scroll"];
