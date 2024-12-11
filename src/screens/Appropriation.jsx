@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+// import { useParams } from "react-router";
 import { sciences, testOnaTili } from "../util/constants";
 import Button from "../components/Button";
 import { styles } from "../util/styles";
 
 const Appropriation = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const [testAnsware, setTestAnsware] = useState(null);
 
   useEffect(() => {

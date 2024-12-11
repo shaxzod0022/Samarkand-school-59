@@ -214,7 +214,6 @@ export const testOnaTili = [
   {
     id: 1,
     question: "Qaysi so‘zda urg‘u birinchi bo‘g‘inda?",
-    complated: false,
     answer: "a",
     complated: false,
     options: [
