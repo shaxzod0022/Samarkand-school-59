@@ -1,0 +1,12 @@
+export { default as Navbar } from "./Navbar";
+export { default as Login } from "./Login";
+export { default as UserInfo } from "./UserInfo";
+export { default as Button } from "./Button";
+export { default as Sciences } from "./Sciences";
+export { default as Activity } from "./Activity";
+export { default as Footer } from "./Footer";
+export { default as Test } from "./Test";
+export { default as StartTest } from "./StartTest";
+export { default as Classes } from "./Classes";
+export { default as StudentsClass } from "./StudentsClass";
+export { default as ScrollToTop } from "./ScrollToTop";
