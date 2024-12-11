@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router";
 import { sciences, testOnaTili } from "../util/constants";
 import Button from "./Button";
 import { checkmark } from "../assets";
-import { type } from "@testing-library/user-event/dist/type";
 
 const StartTest = () => {
   const { id } = useParams();

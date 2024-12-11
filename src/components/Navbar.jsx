@@ -1,10 +1,10 @@
-import { useLocation, useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
+// import { useEffect, useState } from "react";
 // import { languages, loginPassword } from "../util/constants";
 import { styles } from "../util/styles";
-import Button from "./Button";
+// import Button from "./Button";
 import { logo } from "../assets";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const navigate = useNavigate();
