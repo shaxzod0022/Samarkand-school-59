@@ -7,7 +7,7 @@ import Button from "./Button";
 
 const Test = () => {
   const { id } = useParams();
-  const scinceId = Number(id);
+  // const scinceId = Number(id);
   const scinceStoreId = useSelector((state) => state.scinceData.value);
   let scince = sciences.find((science) => science.id === scinceStoreId);
 

@@ -4,7 +4,7 @@ import { classes } from "../util/constants";
 import { useNavigate, useParams } from "react-router";
 const Classes = () => {
   const navigate = useNavigate();
-  const { userId } = useParams();
+  // const { userId } = useParams();
   const classSub = (id) => {
     navigate(`class_students/${id}`);
   };
