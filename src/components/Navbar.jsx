@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 // import { useEffect, useState } from "react";
 // import { languages, loginPassword } from "../util/constants";
 import { styles } from "../util/styles";

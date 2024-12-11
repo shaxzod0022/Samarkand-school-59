@@ -2,11 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { styles } from "../util/styles";
 import { sciences } from "../util/constants";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import Button from "./Button";
 
 const Test = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   // const scinceId = Number(id);
   const scinceStoreId = useSelector((state) => state.scinceData.value);
   let scince = sciences.find((science) => science.id === scinceStoreId);

@@ -1,7 +1,7 @@
 import React from "react";
 import { styles } from "../util/styles";
 import { classes } from "../util/constants";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 const Classes = () => {
   const navigate = useNavigate();
   // const { userId } = useParams();
