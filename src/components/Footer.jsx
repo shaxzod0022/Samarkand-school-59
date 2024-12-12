@@ -21,8 +21,8 @@ const Footer = () => {
               alt=""
             />
           </h1>
-          <p className={`${styles.paragraph} text-white`}>
-            O'zbekiston Respublikasi oliy va o'rta maxzus ta'lim vazirligi
+          <p className={`${styles.paragraph} !text-[15px] text-white mt-3`}>
+            O'zbekiston Respublikasi oliy va o'rta maxsus ta'lim vazirligi
           </p>
         </div>
         <ul
