@@ -20,7 +20,7 @@ const Sciences = () => {
             <div
               onClick={() => submitToStore(item.id)}
               key={idx}
-              className={`${styles.fCol} min-w-[130px] bg-white cursor-pointer text-center max-w-[300px] w-[40%] md:w-[20%] lg:w-full border-2 rounded-md hover:shadow-md sm:p-10 p-10`}
+              className={`${styles.fCol}  bg-white cursor-pointer text-center max-w-[300px] w-[40%] md:w-[20%] lg:w-full border-2 rounded-md hover:shadow-md sm:p-10 p-10`}
             >
               <div className="sm:w-[90px] sm:h-[90px] h-[60px] w-[60px] mb-3">
                 <img
