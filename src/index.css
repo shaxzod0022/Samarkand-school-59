@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: Figtree;
   margin: auto;
@@ -29,23 +25,19 @@ body {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-/* Whole scrollbar */
 ::-webkit-scrollbar {
-  width: 10px; /* Scrollning kengligi */
+  width: 10px;
 }
 
-/* Track (background) */
 ::-webkit-scrollbar-track {
-  background: #edecec; /* Scroll maydoni rangi */
+  background: #edecec;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #abaec6; /* Scroll qismi rangi */
-  border-radius: 10px; /* Scroll qismiga burchaklar */
+  background: #abaec6;
+  border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #091579; /* Hover holatda scroll rangi */
+  background: #091579;
 }

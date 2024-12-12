@@ -42,7 +42,7 @@ const UserInfo = () => {
 
   return (
     <div
-      className={`${styles.fWrap} !items-start bg-white !gap-0 w-full pt-[140px] sm:pt-[110px] mb-10`}
+      className={`${styles.fWrap} !items-start bg-white !gap-0 w-full pt-[100px] sm:pt-[110px] mb-10`}
     >
       <div className={`sm:w-[50%] w-full text-center sm:p-20 p-5`}>
         <img className="w-full" src={userImg} alt={data.name} />

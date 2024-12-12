@@ -22,7 +22,7 @@ const Test = () => {
       <div
         className={`${
           scinceStoreId === null ? "h-[58.7vh]" : "h-auto"
-        } bg-white pt-[140px] sm:pt-[110px] mb-10 relative`}
+        } bg-white pt-[100px] sm:pt-[110px] mb-10 relative`}
       >
         <h2
           className={`${styles.heading2} text-slate-600 absolute top-[50%] left-[50%] -translate-x-[50%]`}
@@ -35,7 +35,7 @@ const Test = () => {
 
   return (
     <div
-      className={`flex flex-wrap items-center bg-white pt-[140px] sm:pt-[110px] mb-10`}
+      className={`flex flex-wrap items-center bg-white pt-[100px] sm:pt-[110px] mb-10`}
     >
       <div
         className={`flex items-center flex-col text-center md:w-[50%] w-full sm:p-10 p-5`}

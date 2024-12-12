@@ -26,7 +26,7 @@ const Appropriation = () => {
   }, [testAnsware]);
 
   return (
-    <div className={`bg-white pt-[140px] sm:pt-[110px] mb-10`}>
+    <div className={`bg-white pt-[100px] sm:pt-[110px] mb-10`}>
       <h2 className={`${styles.heading2} mb-6`}>O'zlashtirish</h2>
       <ul
         className={`w-full flex flex-wrap sm:justify-between justify-around items-center gap-4`}

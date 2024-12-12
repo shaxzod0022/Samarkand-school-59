@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 const TichersPage = () => {
   return (
-    <div className={`w-full pt-[140px] sm:pt-[110px] mb-10`}>
+    <div className={`w-full pt-[100px] sm:pt-[110px] mb-10`}>
       <Helmet>
         <title>Tichers</title>
         <meta name="description" content="Bu mening ajoyib React saytim" />
