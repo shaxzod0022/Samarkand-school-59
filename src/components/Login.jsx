@@ -99,7 +99,7 @@ const Login = () => {
           <img
             className="sm:w-[60px] w-[50px] sm:h-[60px] h-[50px]"
             src={logo}
-            alt=""
+            alt="maktab platformasi logotipi"
           />
         </div>
         <h2 className={`${styles.heading3} mb-3`}>

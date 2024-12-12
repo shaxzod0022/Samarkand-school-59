@@ -18,7 +18,7 @@ const Footer = () => {
             <img
               className="rounded-full sm:w-[70px] w-[50px]"
               src={logo}
-              alt=""
+              alt="maktap platformasi logotipi"
             />
           </h1>
           <p className={`${styles.paragraph} !text-[15px] text-white mt-3`}>

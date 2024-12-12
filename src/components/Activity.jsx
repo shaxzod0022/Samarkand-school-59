@@ -23,7 +23,7 @@ const Activity = () => {
                 <img
                   className="w-ful h-full object-contain rounded-full"
                   src={item.img}
-                  alt=""
+                  alt="fanlar"
                 />
               </div>
               <h3 className={`${styles.heading3}`}>{item.title}</h3>

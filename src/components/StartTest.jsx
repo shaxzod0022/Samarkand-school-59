@@ -123,7 +123,7 @@ const StartTest = () => {
     >
       <div className={`lg:w-[60%] w-full ${styles.fCol}`}>
         <div className="flex gap-3 items-center justify-center mb-5">
-          <img className="max-w-[50px] rounded-full" src={science.img} alt="" />
+          <img className="max-w-[50px] rounded-full" src={science.img} alt="fanlar rasmlari" />
           <h2 className={`${styles.heading2}`}>{science.title}</h2>
         </div>
 
@@ -207,7 +207,7 @@ const StartTest = () => {
               <img
                 className="max-w-[50px] rounded-full"
                 src={science.img}
-                alt=""
+                alt="fanlar rasmlari"
               />
               <h2 className={styles?.heading2}>{science.title}</h2>
             </div>

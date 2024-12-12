@@ -15,7 +15,7 @@ const Navbar = () => {
           className={`${styles.heading1} sm:w-[70px] w-[50px] cursor-pointer flex sm:mb-0`}
           onClick={() => navigate(`/home_page/${user.id}`)}
         >
-          <img className="rounded-full w-full" src={logo} alt="" />
+          <img className="rounded-full w-full" src={logo} alt="maktab platformasi logotipi" />
         </h1>
         <p
           className={`${styles.paragraph} text-white max-w-[250px] sm:block hidden text-center`}

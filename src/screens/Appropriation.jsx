@@ -38,7 +38,7 @@ const Appropriation = () => {
               className={`max-w-[300px] w-full flex items-center justify-around sm:justify-between flex-col border-2 rounded-sm p-4`}
             >
               <div className={`flex flex-col items-center gap-6 mb-3`}>
-                <img src={i.img} className="w-20 rounded-full h-20" alt="" />
+                <img src={i.img} className="w-20 rounded-full h-20" alt="maktab fanlari" />
                 <h3 className={`${styles.heading3}`}>{i.title}</h3>
               </div>
               <div className={`flex w-full flex-col items-start gap-3`}>
