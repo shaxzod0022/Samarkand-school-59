@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { sciences, testOnaTili } from "../util/constants";
 import Button from "./Button";
 import { checkmark } from "../assets";
+import { Link } from "react-router-dom";
 
 const StartTest = () => {
   const { id } = useParams();
@@ -13,57 +14,32 @@ const StartTest = () => {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [timeLeft, setTimeLeft] = useState(3600); // Vaqt (soniya)
   const [isTestCompleted, setIsTestCompleted] = useState(false);
-  const testCount = testOnaTili.length;
-  const keys = Object.keys(selectedOptions).map(Number);
+  const [user, setUser] = useState();
 
   useEffect(() => {
     const allTestData = JSON.parse(localStorage.getItem("testData")) || {};
-    const currentScienceData = allTestData[science.title] || {};
-    const savedOptions = currentScienceData.selectedOptions || {};
-    setSelectedOptions(savedOptions);
+    const currentScienceData = allTestData[science?.title] || {};
+    setSelectedOptions(currentScienceData.selectedOptions || {});
 
-    let savedTime = localStorage.getItem("timeLeft");
-    if (!savedTime) {
-      savedTime = 1800; // Set default to 30 minutes if no timeLeft in local storage
-      localStorage.setItem("timeLeft", savedTime); // Save the 30 minutes in localStorage
-    } else {
-      savedTime = parseInt(savedTime, 10);
-    }
+    const savedTime = parseInt(localStorage.getItem("timeLeft"), 10) || 1800;
     setTimeLeft(savedTime);
-  }, [science.title]);
+
+    const userId = JSON.parse(localStorage.getItem("userData"));
+    setUser(userId?.id);
+  }, [science?.title]);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
-        const newTime = prev > 0 ? prev - 1 : 0;
-        if (newTime > 0) {
-          localStorage.setItem("timeLeft", newTime); // Faqat 0 dan yuqori qiymatlar saqlanadi
+        if (prev > 0) {
+          localStorage.setItem("timeLeft", prev - 1);
+          return prev - 1;
         }
-        return newTime;
+        return 0;
       });
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
-
-  const finishTest = () => {
-    const updatedScienceData = {
-      science: science, // Fanning barcha ma'lumotlari
-      selectedOptions, // Belgilangan javoblar
-      completedTime: formatTime(timeLeft), // Qolgan vaqt
-    };
-
-    // Ma'lumotlarni localStorage ga saqlash
-    localStorage.setItem("testData", JSON.stringify(updatedScienceData));
-    setTimeLeft(0);
-    setIsTestCompleted(true);
-    alert(
-      `${science.title} testi yakunlandi! Qolgan vaqt: ${formatTime(timeLeft)}`
-    );
-
-    // Foydalanuvchini o'z sahifasiga yo'naltirish
-    navigate(`/home_page/${user}`);
-  };
 
   useEffect(() => {
     const blockNavigation = (event) => {
@@ -103,19 +79,30 @@ const StartTest = () => {
       selectedOptions: newSelectedOptions,
       science,
     };
-    const updatedTestData = {
-      ...allTestData,
-      [science.title]: updatedScienceData,
-    };
-    localStorage.setItem("testData", JSON.stringify(updatedTestData));
+    localStorage.setItem(
+      "testData",
+      JSON.stringify({
+        ...allTestData,
+        [science.title]: updatedScienceData,
+      })
+    );
     setSelectedOptions(newSelectedOptions);
   };
 
-  const [user, setUser] = useState();
-  useEffect(() => {
-    let userId = JSON.parse(localStorage.getItem("userData"));
-    setUser(userId.id);
-  }, []);
+  const finishTest = () => {
+    const updatedScienceData = {
+      science,
+      selectedOptions,
+      completedTime: formatTime(timeLeft),
+    };
+    localStorage.setItem("testData", JSON.stringify(updatedScienceData));
+    setIsTestCompleted(true);
+    setTimeLeft(0);
+    alert(
+      `${science.title} testi yakunlandi! Qolgan vaqt: ${formatTime(timeLeft)}`
+    );
+    navigate(`/home_page/${user}`);
+  };
 
   return (
     <div
@@ -123,12 +110,16 @@ const StartTest = () => {
     >
       <div className={`lg:w-[60%] w-full ${styles.fCol}`}>
         <div className="flex gap-3 items-center justify-center mb-5">
-          <img className="max-w-[50px] rounded-full" src={science.img} alt="fanlar rasmlari" />
-          <h2 className={`${styles.heading2}`}>{science.title}</h2>
+          <img
+            className="max-w-[50px] rounded-full"
+            src={science?.img}
+            alt="fanlar rasmlari"
+          />
+          <h2 className={`${styles.heading2}`}>{science?.title}</h2>
         </div>
 
         <p className={`${styles.paragraph} text-center mb-3`}>
-          Umumiy testlar soni: {testCount}
+          Umumiy testlar soni: {testOnaTili.length}
         </p>
         <p className={`${styles.paragraph} text-center mb-5`}>
           Qolgan vaqt: {formatTime(timeLeft)}
@@ -148,50 +139,44 @@ const StartTest = () => {
                 </p>
               </div>
               <ul className="p-2">
-                {item.options.map((answer) => {
-                  const isSelected = selectedOptions[item.id] === answer.option;
-                  return (
-                    <li
-                      key={answer.option}
-                      onClick={() => optionHandle(item.id, answer.option)}
-                      className={`${styles.fBetween} gap-2 p-1 hover:bg-slate-200 rounded-sm cursor-pointer`}
-                    >
-                      <div className="flex gap-2 items-center">
-                        <p className={`${styles.paragraph} uppercase`}>
-                          {answer.option}.
-                        </p>
-                        <p className={`${styles.paragraph}`}>{answer.title}</p>
-                      </div>
-                      {isSelected && (
-                        <img
-                          src={checkmark}
-                          alt="Checked"
-                          className="w-5 h-5"
-                        />
-                      )}
-                    </li>
-                  );
-                })}
+                {item.options.map((answer) => (
+                  <li
+                    key={answer.option}
+                    onClick={() => optionHandle(item.id, answer.option)}
+                    className={`${styles.fBetween} gap-2 p-1 hover:bg-slate-200 rounded-sm cursor-pointer`}
+                  >
+                    <div className="flex gap-2 items-center">
+                      <p className={`${styles.paragraph} uppercase`}>
+                        {answer.option}.
+                      </p>
+                      <p className={`${styles.paragraph}`}>{answer.title}</p>
+                    </div>
+                    {selectedOptions[item.id] === answer.option && (
+                      <img src={checkmark} alt="Checked" className="w-5 h-5" />
+                    )}
+                  </li>
+                ))}
               </ul>
             </li>
           ))}
         </ul>
-        {/* Har bir savolga tezkor o'tish */}
+
         <ul
           className={`${styles.fWrap} bg-white mb-10 !gap-3 border-2 rounded-md p-5 border-formaColor`}
         >
           {testOnaTili.map((item) => (
             <li key={item.id}>
-              <a
-                href={`#${item.id}`}
+              <button
                 className={`${
-                  keys.find((i) => i === item.id)
-                    ? "!bg-formaColor text-white"
-                    : ""
-                } rounded-full border-2 sm:w-10 sm:h-10 w-8 h-8 cursor-pointer flex justify-center flex-col text-center border-formaColor`}
+                  selectedOptions[item.id] ? "!bg-formaColor text-white" : ""
+                } rounded-full border-2 sm:w-10 sm:h-10 w-8 h-8 cursor-pointer flex justify-center items-center flex-col border-formaColor`}
+                onClick={() => {
+                  const element = document.getElementById(item.id);
+                  element?.scrollIntoView({ behavior: "smooth" });
+                }}
               >
                 {item.id}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
@@ -206,10 +191,10 @@ const StartTest = () => {
             <div className="flex gap-3 items-center justify-center mb-5">
               <img
                 className="max-w-[50px] rounded-full"
-                src={science.img}
+                src={science?.img}
                 alt="fanlar rasmlari"
               />
-              <h2 className={styles?.heading2}>{science.title}</h2>
+              <h2 className={styles.heading2}>{science?.title}</h2>
             </div>
             <h3 className={`${styles.heading3} text-center mb-5`}>
               Testni rosdan yakunlamoqchimisiz?

@@ -22,6 +22,7 @@ const Login = () => {
         "https://jsonplaceholder.typicode.com/users"
       );
       dispatch(createUsers(response.data));
+      console.log(response.data);
     } catch (error) {
       console.error("Foydalanuvchilarni olishda xatolik:", error);
     }
@@ -37,34 +38,6 @@ const Login = () => {
       navigate(`/home_page/${JSON.parse(user).id}`);
     }
   }, [navigate]);
-
-  // Logout timeout funksiyasi
-  const expiryTime = 1 * 60 * 1000; // 1 daqiqa
-  const resetLogoutTimeout = useCallback(() => {
-    clearTimeout(window.logoutTimeout); // Oldingi timeoutni tozalash
-    window.logoutTimeout = setTimeout(() => {
-      localStorage.removeItem("userData");
-      localStorage.removeItem("loginTime");
-      alert(
-        "Siz 1 daqiqa davomida faol bo'lmagansiz. Kirish sahifasiga qaytdingiz."
-      );
-      navigate("/");
-    }, expiryTime);
-  }, [expiryTime, navigate]);
-
-  useEffect(() => {
-    const events = ["mousemove", "keypress", "click", "scroll"];
-    events.forEach((event) => {
-      window.addEventListener(event, resetLogoutTimeout);
-    });
-
-    return () => {
-      events.forEach((event) => {
-        window.removeEventListener(event, resetLogoutTimeout);
-      });
-      clearTimeout(window.logoutTimeout);
-    };
-  }, [resetLogoutTimeout]);
 
   const handleLogin = (e) => {
     e.preventDefault();
