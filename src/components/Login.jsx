@@ -56,6 +56,9 @@ const Login = () => {
     } else {
       setError("Login yoki parol noto'g'ri!");
       setValuePassword("");
+      setTimeout(() => {
+        setError(null);
+      }, 4000);
     }
   };
 
@@ -121,6 +124,9 @@ const Login = () => {
               onClick={(e) => {
                 e.preventDefault();
                 setError("Sinf rahbaringizga murojat qiling!");
+                setTimeout(() => {
+                  setError(null);
+                }, 4000);
               }}
             />
           </div>
