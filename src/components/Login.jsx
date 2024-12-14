@@ -22,7 +22,6 @@ const Login = () => {
         "https://jsonplaceholder.typicode.com/users"
       );
       dispatch(createUsers(response.data));
-      console.log(response.data);
     } catch (error) {
       console.error("Foydalanuvchilarni olishda xatolik:", error);
     }
@@ -41,7 +40,6 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     const user = userData.find(
       (user) =>
         user.id === Number(valueLogin) && user.username === valuePassword
@@ -118,7 +116,12 @@ const Login = () => {
             </div>
             <Button
               title="Parolni unutdingizmi?"
+              type={"button"} // Ushbu qator avtomatik formani jo'natishni oldini oladi
               className="!bg-white !text-formaColor !p-0"
+              onClick={(e) => {
+                e.preventDefault(); // Formani jo'natishni oldini olish
+                setError("Sinf rahbaringizga murojat qiling!");
+              }}
             />
           </div>
           {error && (
@@ -126,7 +129,7 @@ const Login = () => {
               {error}
             </span>
           )}
-          <Button title="Kirish" className="w-full" type="submit" />
+          <Button title="Kirish" className="w-full" type={"submit"} />
         </form>
       </div>
     </div>
