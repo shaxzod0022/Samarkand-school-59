@@ -99,7 +99,7 @@ const Login = () => {
             />
             <button
               type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
+              onClick={() => setShowPassword((i) => !i)}
               className="text-gray-500"
             >
               <i
@@ -116,10 +116,10 @@ const Login = () => {
             </div>
             <Button
               title="Parolni unutdingizmi?"
-              type={"button"} // Ushbu qator avtomatik formani jo'natishni oldini oladi
+              type={"button"}
               className="!bg-white !text-formaColor !p-0"
               onClick={(e) => {
-                e.preventDefault(); // Formani jo'natishni oldini olish
+                e.preventDefault();
                 setError("Sinf rahbaringizga murojat qiling!");
               }}
             />
