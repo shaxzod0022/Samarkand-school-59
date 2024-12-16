@@ -11,7 +11,7 @@ const StartTest = () => {
   const science = sciences.find((item) => item.id === Number(id));
   const [hidden, setHidden] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [timeLeft, setTimeLeft] = useState(3600); // Vaqt (soniya)
+  const [timeLeft, setTimeLeft] = useState(3600);
   const [isTestCompleted, setIsTestCompleted] = useState(false);
   const [user, setUser] = useState();
 
@@ -98,9 +98,10 @@ const StartTest = () => {
     setIsTestCompleted(true);
     setTimeLeft(0);
     alert(
-      `${science.title} testi yakunlandi! Qolgan vaqt: ${formatTime(timeLeft)}`
+      `${science.title} testi yakunlandi. Natijani o'zlashtirish sahifasida ko'rishingiz mumkin!`
     );
-    navigate(`/home_page/${user}`);
+    navigate(`/home_page/${user}`, { replace: true });
+    window.history.pushState(null, null, "/home_page");
   };
 
   return (

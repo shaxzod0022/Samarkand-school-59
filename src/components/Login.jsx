@@ -22,6 +22,7 @@ const Login = () => {
         "https://jsonplaceholder.typicode.com/users"
       );
       dispatch(createUsers(response.data));
+      console.log(response.data);
     } catch (error) {
       console.error("Foydalanuvchilarni olishda xatolik:", error);
     }

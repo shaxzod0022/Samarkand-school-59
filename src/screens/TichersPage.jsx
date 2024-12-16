@@ -10,7 +10,7 @@ const TichersPage = () => {
         <meta name="description" content="Bu mening ajoyib React saytim" />
         <meta
           name="keywords"
-          content="React, SEO, web development, tichers, ticher, samarkand, sam maktab, maktab 59, 59, samarqanda maktab 59, samarqand, registon"
+          content="Tichers, ticher, samarkand, sam maktab, maktab 59, 59, samarqanda maktab 59, samarqand, registon"
         />
       </Helmet>
       <Classes />
