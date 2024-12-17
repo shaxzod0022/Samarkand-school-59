@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Footer, Navbar } from "../components";
 import { styles } from "../util/styles";
 import { Outlet, useLocation } from "react-router";
-import axios from "axios";
-import { headers } from "next/headers";
+// import axios from "axios";
+// import { headers } from "next/headers";
 
 const MainLayout = () => {
   const pathname = useLocation().pathname;
