@@ -25,6 +25,9 @@ const Login = () => {
       console.log(response.data);
     } catch (error) {
       console.error("Foydalanuvchilarni olishda xatolik:", error);
+      alert(
+        "Serverda xatolik kuzatilayotgan bo'lishi mumkin yoki sizning internet tarmog'ingiz yaxshi ishlamayapti keyinroq urunib ko'ring!!!"
+      );
     }
   }, [dispatch]);
 
