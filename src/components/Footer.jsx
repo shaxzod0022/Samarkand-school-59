@@ -2,8 +2,8 @@ import React from "react";
 import { logo } from "../assets";
 import { styles } from "../util/styles";
 import { useNavigate } from "react-router";
-import { footerLinks } from "../util/constants";
-import { Link } from "react-router-dom";
+// import { footerLinks } from "../util/constants";
+// import { Link } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
