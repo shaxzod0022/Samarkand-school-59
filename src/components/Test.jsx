@@ -14,7 +14,6 @@ const Test = () => {
   const navigate = useNavigate();
   const startButton = () => {
     navigate(`/start_test_page/${scince.id}`);
-    
   };
 
   if (!scinceStoreId) {
@@ -38,15 +37,15 @@ const Test = () => {
       className={`flex flex-wrap items-center bg-white pt-[100px] sm:pt-[110px] mb-10`}
     >
       <div
-        className={`flex items-center flex-col text-center md:w-[50%] w-full sm:p-10 p-5`}
+        className={`flex items-center flex-col text-center md:w-[50%] w-full sm:p-10 p-2`}
       >
         <img
-          className="lg:w-[60%] w-[80%] rounded-lg object-cover"
+          className="lg:w-[400px] md:w-[300px] w-[80%] rounded-lg object-cover"
           src={scince.img}
           alt={scince.title}
         />
       </div>
-      <div className="md:w-[50%] w-full p-10">
+      <div className="md:w-[50%] w-full sm:p-10 p-2">
         <h2 className={`${styles.heading2} mb-5`}>{scince.title}</h2>
         <p className={`${styles.paragraph} mb-4`}>{scince.info}</p>
         <p className={`${styles.paragraph} mb-8`}>{scince.info}</p>
