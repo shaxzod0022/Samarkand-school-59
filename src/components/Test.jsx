@@ -20,7 +20,7 @@ const Test = () => {
     return (
       <div
         className={`${
-          scinceStoreId === null ? "h-[58.7vh]" : "h-auto"
+          scinceStoreId === null ? "h-[70vh]" : "h-auto"
         } bg-white pt-[100px] sm:pt-[110px] mb-10 relative`}
       >
         <h2
