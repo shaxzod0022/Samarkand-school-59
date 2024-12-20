@@ -10,9 +10,9 @@ const Footer = () => {
   return (
     <div className={`bg-formaColor ${styles.container} pt-8 pb-3`}>
       <div className={`${styles.fBetween} !items-start flex-wrap gap-10 mb-6`}>
-        <div className="w-full text-center sm:w-[10%]">
+        <div className="gap-4 text-center flex flex-wrap items-center">
           <h1
-            className={`${styles.heading1} cursor-pointer w-full flex sm:mb-0 justify-center`}
+            className={`${styles.heading1} cursor-pointer w-[150px] flex sm:mb-0 justify-center`}
             onClick={() => navigate("/home_page")}
           >
             <img
@@ -21,11 +21,11 @@ const Footer = () => {
               alt="maktap platformasi logotipi"
             />
           </h1>
-          <p className={`${styles.paragraph} !text-[15px] text-white mt-3`}>
+          <p className={`${styles.paragraph} w-[200px] !text-[15px] text-white`}>
             O'zbekiston Respublikasi oliy va o'rta maxsus ta'lim vazirligi
           </p>
         </div>
-        <ul
+        {/* <ul
           className={`sm:w-[85%] w-full ${styles.fBetween} !items-start flex-wrap gap-10`}
         >
           {footerLinks.map((menyu, menyuidx) => {
@@ -69,7 +69,7 @@ const Footer = () => {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
       </div>
       <div className="w-full bg-white h-0.5 mb-3" />
       <div className="text-center mb-2">
