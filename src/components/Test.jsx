@@ -6,13 +6,16 @@ import { useNavigate } from "react-router";
 import Button from "./Button";
 
 const Test = () => {
-  // const { id } = useParams();
-  // const scinceId = Number(id);
   const scinceStoreId = useSelector((state) => state.scinceData.value);
   let scince = sciences.find((science) => science.id === scinceStoreId);
 
   const navigate = useNavigate();
+
   const startButton = () => {
+    // Testni boshlashdan oldin localStorage-ni tozalash
+    localStorage.removeItem("testData");
+    localStorage.removeItem("timeLeft");
+
     navigate(`/start_test_page/${scince.id}`);
   };
 
@@ -48,7 +51,6 @@ const Test = () => {
       <div className="md:w-[50%] w-full sm:p-10 p-2">
         <h2 className={`${styles.heading2} mb-5`}>{scince.title}</h2>
         <p className={`${styles.paragraph} mb-4`}>{scince.info}</p>
-        <p className={`${styles.paragraph} mb-8`}>{scince.info}</p>
         <Button title="Testni boshlash" onClick={() => startButton()} />
       </div>
     </div>

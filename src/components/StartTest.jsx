@@ -16,6 +16,10 @@ const StartTest = () => {
   const [user, setUser] = useState();
 
   useEffect(() => {
+    // LocalStorage-ni tozalash
+    localStorage.removeItem("testData");
+    localStorage.removeItem("timeLeft");
+
     const allTestData = JSON.parse(localStorage.getItem("testData")) || {};
     const currentScienceData = allTestData[science?.title] || {};
     setSelectedOptions(currentScienceData.selectedOptions || {});
@@ -105,9 +109,7 @@ const StartTest = () => {
   };
 
   return (
-    <div
-      className={`${styles.fCol} ${styles.container} bg-white py-10 flex-wrap`}
-    >
+    <div className={`${styles.fCol} ${styles.container} bg-white py-10 flex-wrap`}>
       <div className={`lg:w-[60%] w-full ${styles.fCol}`}>
         <div className="flex gap-3 items-center justify-center mb-5">
           <img
@@ -161,9 +163,7 @@ const StartTest = () => {
           ))}
         </ul>
 
-        <ul
-          className={`${styles.fWrap} bg-white mb-10 !gap-3 border-2 rounded-md p-5 border-formaColor`}
-        >
+        <ul className={`${styles.fWrap} bg-white mb-10 !gap-3 border-2 rounded-md p-5 border-formaColor`}>
           {testOnaTili.map((item) => (
             <li key={item.id}>
               <button
@@ -185,9 +185,7 @@ const StartTest = () => {
 
       {hidden && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div
-            className={`${styles.fCol} bg-white rounded-md p-8 w-[90%] max-w-[500px]`}
-          >
+          <div className={`${styles.fCol} bg-white rounded-md p-8 w-[90%] max-w-[500px]`}>
             <div className="flex gap-3 items-center justify-center mb-5">
               <img
                 className="max-w-[50px] rounded-full"
