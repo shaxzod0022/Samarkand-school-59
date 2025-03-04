@@ -43,7 +43,7 @@ const TeacherAuth = () => {
       >
         <div className="w-full flex items-center flex-col mb-3">
           <img
-            className="sm:w-[60px] w-[50px] sm:h-[60px] h-[50px]"
+            className="sm:w-[60px] w-[50px] sm:h-[60px] h-[50px] rounded-full"
             src={logo}
             alt="maktab platformasi logotipi"
           />
