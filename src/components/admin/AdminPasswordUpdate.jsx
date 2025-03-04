@@ -11,7 +11,7 @@ const AdminPasswordUpdate = () => {
   const [adminId, setAdminId] = useState();
 
   useEffect(() => {
-    const storedAdminData = localStorage.getItem("adminData");
+    const storedAdminData = sessionStorage.getItem("adminData");
     if (storedAdminData) {
       setAdminId(JSON.parse(storedAdminData));
     }

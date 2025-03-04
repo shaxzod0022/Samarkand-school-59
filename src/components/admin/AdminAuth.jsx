@@ -18,7 +18,7 @@ const AdminAuth = () => {
         "https://schoole-test-site.onrender.com/api/admin/login",
         formData
       );
-      localStorage.setItem("adminData", JSON.stringify(res.data));
+      sessionStorage.setItem("adminData", JSON.stringify(res.data));
       navigate("/hello-admin/panel"); // 🔹 Admin paneliga yo‘naltirish
     } catch (error) {
       console.error(

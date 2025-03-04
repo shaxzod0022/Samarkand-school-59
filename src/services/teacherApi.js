@@ -18,14 +18,14 @@ const isTokenExpired = (token) => {
 
 // 🔹 Logout funksiyasi
 const logoutTeacher = () => {
-  localStorage.removeItem("teacherData");
+  sessionStorage.removeItem("teacherData");
   window.location.href = "/hello-teacher"; // Foydalanuvchini login sahifasiga yo‘naltiramiz
 };
 
 // 🔹 Tokenni yangilash funksiyasi
 const refreshToken = async () => {
   try {
-    const teacherData = JSON.parse(localStorage.getItem("teacherData"));
+    const teacherData = JSON.parse(sessionStorage.getItem("teacherData"));
     const refresh = teacherData?.refreshToken;
 
     if (!refresh) {
@@ -41,7 +41,7 @@ const refreshToken = async () => {
     );
 
     const newTeacherData = { ...teacherData, token: response.data.accessToken };
-    localStorage.setItem("teacherData", JSON.stringify(newTeacherData));
+    sessionStorage.setItem("teacherData", JSON.stringify(newTeacherData));
 
     return response.data.accessToken;
   } catch (error) {
@@ -53,7 +53,7 @@ const refreshToken = async () => {
 // 🔹 Har bir so‘rov oldidan tokenni tekshirish
 teacherApi.interceptors.request.use(
   async (config) => {
-    let teacherData = JSON.parse(localStorage.getItem("teacherData"));
+    let teacherData = JSON.parse(sessionStorage.getItem("teacherData"));
     let token = teacherData?.token;
 
     if (token && isTokenExpired(token)) {

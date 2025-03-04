@@ -7,7 +7,7 @@ const TeacherData = () => {
   const [teacher, setTeacher] = useState(null);
 
   useEffect(() => {
-    const storeTeacher = localStorage.getItem("teacherData");
+    const storeTeacher = sessionStorage.getItem("teacherData");
     if (storeTeacher) {
       setTeacherData(JSON.parse(storeTeacher));
     }

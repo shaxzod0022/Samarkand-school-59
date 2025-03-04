@@ -17,7 +17,7 @@ const isTokenExpired = (token) => {
 
 const refreshToken = async () => {
   try {
-    const studentData = JSON.parse(localStorage.getItem("studentData"));
+    const studentData = JSON.parse(sessionStorage.getItem("studentData"));
     const refresh = studentData?.refreshToken;
 
     if (!refresh) {
@@ -32,7 +32,7 @@ const refreshToken = async () => {
     );
 
     const newStudentData = { ...studentData, token: response.data.accessToken };
-    localStorage.setItem("studentData", JSON.stringify(newStudentData));
+    sessionStorage.setItem("studentData", JSON.stringify(newStudentData));
 
     return response.data.accessToken;
   } catch (error) {
@@ -42,13 +42,13 @@ const refreshToken = async () => {
 };
 
 const logoutUser = () => {
-  localStorage.removeItem("studentData");
+  sessionStorage.removeItem("studentData");
   window.location.href = "/";
 };
 
 studentApi.interceptors.request.use(
   async (config) => {
-    let studentData = JSON.parse(localStorage.getItem("studentData"));
+    let studentData = JSON.parse(sessionStorage.getItem("studentData"));
     let token = studentData?.token;
 
     if (token && isTokenExpired(token)) {

@@ -8,7 +8,7 @@ const TeacherPanelMenu = ({ newClass }) => {
   const { pathname } = useLocation();
 
   const logout = () => {
-    localStorage.removeItem("teacherData");
+    sessionStorage.removeItem("teacherData");
     window.location.href = "/hello-teacher";
   };
 

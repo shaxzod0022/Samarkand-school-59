@@ -7,7 +7,7 @@ const AdminData = () => {
   const [admin, setAdmin] = useState(null);
 
   useEffect(() => {
-    const storedAdmin = localStorage.getItem("adminData");
+    const storedAdmin = sessionStorage.getItem("adminData");
     if (storedAdmin) {
       setAdminDataStore(JSON.parse(storedAdmin));
     }

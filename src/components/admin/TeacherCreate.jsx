@@ -12,7 +12,7 @@ const TeacherCreate = () => {
   const [adminToken, setAdminToken] = useState();
 
   useEffect(() => {
-    const storeAdminData = localStorage.getItem("adminData");
+    const storeAdminData = sessionStorage.getItem("adminData");
     if (storeAdminData) {
       setAdminToken(JSON.parse(storeAdminData));
     }

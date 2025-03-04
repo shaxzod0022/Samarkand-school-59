@@ -25,7 +25,7 @@ const UserInfo = () => {
   }, [id]);
 
   const handleLogout = () => {
-    localStorage.removeItem("studentData");
+    sessionStorage.removeItem("studentData");
     navigate("/");
   };
 

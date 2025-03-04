@@ -8,7 +8,7 @@ const ResultStudent = () => {
   const [studentId, setStudentId] = useState();
 
   useEffect(() => {
-    const storeDataStudent = localStorage.getItem("studentData");
+    const storeDataStudent = sessionStorage.getItem("studentData");
     if (storeDataStudent) {
       const data = JSON.parse(storeDataStudent);
       setStudentId(data.student._id);

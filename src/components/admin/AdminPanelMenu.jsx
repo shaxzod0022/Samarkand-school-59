@@ -8,7 +8,7 @@ const AdminPanelMenu = ({ newClass }) => {
   const { pathname } = useLocation();
 
   const logout = () => {
-    localStorage.clear()
+    sessionStorage.clear()
     window.location.href = "/hello-admin";
   };
 

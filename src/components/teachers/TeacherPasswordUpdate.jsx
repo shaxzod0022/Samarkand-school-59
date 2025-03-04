@@ -11,7 +11,7 @@ const TeacherPasswordUpdate = () => {
   const [teacherId, setTeacherId] = useState();
 
   useEffect(() => {
-    const storeTeacherData = localStorage.getItem("teacherData");
+    const storeTeacherData = sessionStorage.getItem("teacherData");
     if (storeTeacherData) {
       const data = JSON.parse(storeTeacherData);
       setTeacherId(data);

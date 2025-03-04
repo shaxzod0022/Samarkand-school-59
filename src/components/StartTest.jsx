@@ -23,7 +23,7 @@ const StartTest = () => {
         const response = await studentApi.get("/subjects/subjects-data");
         const data = response?.data?.find((i) => i._id === id);
 
-        const savedTime = localStorage.getItem(`testCountdown-${id}`);
+        const savedTime = sessionStorage.getItem(`testCountdown-${id}`);
         const remainingTime = savedTime
           ? parseInt(savedTime, 10)
           : data.duration * 60;
@@ -31,10 +31,10 @@ const StartTest = () => {
         setCountdown(remainingTime);
         setSubjectInfo(data);
 
-        const savedStartTime = localStorage.getItem(`testStartTime-${id}`);
+        const savedStartTime = sessionStorage.getItem(`testStartTime-${id}`);
         if (!savedStartTime) {
           const now = Date.now();
-          localStorage.setItem(`testStartTime-${id}`, now.toString());
+          sessionStorage.setItem(`testStartTime-${id}`, now.toString());
           setStartTime(now);
         } else {
           setStartTime(parseInt(savedStartTime, 10));
@@ -55,12 +55,12 @@ const StartTest = () => {
     };
     getTests();
 
-    const savedData = localStorage.getItem("testData");
+    const savedData = sessionStorage.getItem("testData");
     if (savedData) {
       setSelectedOptions(JSON.parse(savedData));
     }
 
-    const studentData = localStorage.getItem("studentData");
+    const studentData = sessionStorage.getItem("studentData");
     if (studentData) {
       const data = JSON.parse(studentData);
       setStudentId(data.student._id);
@@ -100,9 +100,9 @@ const StartTest = () => {
         subjectId: id,
       });
 
-      localStorage.removeItem(`testCountdown-${id}`);
-      localStorage.removeItem(`testStartTime-${id}`);
-      localStorage.removeItem("testData");
+      sessionStorage.removeItem(`testCountdown-${id}`);
+      sessionStorage.removeItem(`testStartTime-${id}`);
+      sessionStorage.removeItem("testData");
 
       navigate(`/home_page`);
     } catch (error) {
@@ -115,7 +115,7 @@ const StartTest = () => {
       const timer = setInterval(() => {
         setCountdown((prev) => {
           const newTime = prev - 1;
-          localStorage.setItem(`testCountdown-${id}`, newTime.toString());
+          sessionStorage.setItem(`testCountdown-${id}`, newTime.toString());
           return newTime;
         });
       }, 1000);
@@ -129,7 +129,7 @@ const StartTest = () => {
 
   const optionHandle = (questionId, option) => {
     const newSelectedOptions = { ...selectedOptions, [questionId]: option };
-    localStorage.setItem("testData", JSON.stringify(newSelectedOptions));
+    sessionStorage.setItem("testData", JSON.stringify(newSelectedOptions));
     setSelectedOptions(newSelectedOptions);
   };
 

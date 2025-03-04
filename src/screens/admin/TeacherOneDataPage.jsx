@@ -10,7 +10,7 @@ const TeacherOneDataPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const storedAdminData = localStorage.getItem("adminData");
+    const storedAdminData = sessionStorage.getItem("adminData");
     if (storedAdminData) {
       setAdminToken(JSON.parse(storedAdminData));
     }

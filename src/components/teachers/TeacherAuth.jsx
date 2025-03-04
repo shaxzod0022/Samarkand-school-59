@@ -18,7 +18,7 @@ const TeacherAuth = () => {
         "https://schoole-test-site.onrender.com/api/teacher/login-teacher",
         formData
       );
-      localStorage.setItem("teacherData", JSON.stringify(res.data));
+      sessionStorage.setItem("teacherData", JSON.stringify(res.data));
       navigate("/hello-teacher/panel");
     } catch (error) {
       console.error(

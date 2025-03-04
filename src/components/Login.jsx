@@ -9,16 +9,18 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // 🆕 Loading state qo‘shildi
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // ✅ Login tugmasi bosilganda yuklanish boshlanadi
     try {
       const res = await axios.post(
         "https://schoole-test-site.onrender.com/api/students/login-student",
         formData
       );
-      localStorage.setItem("studentData", JSON.stringify(res.data));
+      sessionStorage.setItem("studentData", JSON.stringify(res.data));
       navigate("/home_page");
     } catch (error) {
       console.error(
@@ -26,8 +28,10 @@ const Login = () => {
         error.response?.data?.message || "Server xatosi"
       );
       setErrorMessage(
-        error.response?.data?.message && "Login yoki parol xato!"
+        error.response?.data?.message || "Login yoki parol xato!"
       );
+    } finally {
+      setIsLoading(false); // ✅ Har qanday holatda yuklanish tugaydi
     }
   };
 
@@ -90,7 +94,7 @@ const Login = () => {
               className="!bg-white !text-formaColor !p-0"
               onClick={(e) => {
                 e.preventDefault();
-                setErrorMessage("Dasturchiga murojat qiling!");
+                setErrorMessage("Sinf raxbaringizga murojat qiling!");
                 setTimeout(() => {
                   setErrorMessage(null);
                 }, 4000);
@@ -102,7 +106,13 @@ const Login = () => {
               {errorMessage}
             </span>
           )}
-          <Button title="Kirish" className="w-full" type={"submit"} />
+          {/* 🔽 **Yangi tugma holati** */}
+          <Button
+            title={isLoading ? "Kutib turing yuklanmoqda..." : "Kirish"}
+            className="w-full"
+            type="submit"
+            disabled={isLoading} // ✅ Login paytida tugma bosilmaydi
+          />
         </form>
       </div>
     </div>

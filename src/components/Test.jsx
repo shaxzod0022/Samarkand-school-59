@@ -13,7 +13,7 @@ const Test = () => {
   const [studentId, setStudentId] = useState(null);
 
   useEffect(() => {
-    const storeStudentData = localStorage.getItem("studentData");
+    const storeStudentData = sessionStorage.getItem("studentData");
     if (storeStudentData) {
       const data = JSON.parse(storeStudentData);
       setStudentId(data.student._id);

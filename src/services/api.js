@@ -18,14 +18,14 @@ const isTokenExpired = (token) => {
 
 // 🔹 Logout funksiyasi
 const logoutAdmin = () => {
-  localStorage.removeItem("adminData");
+  sessionStorage.removeItem("adminData");
   window.location.href = "/hello-admin";
 };
 
 // 🔹 Tokenni yangilash funksiyasi
 const refreshToken = async () => {
   try {
-    const adminData = JSON.parse(localStorage.getItem("adminData"));
+    const adminData = JSON.parse(sessionStorage.getItem("adminData"));
     const refresh = adminData?.refreshToken;
 
     if (!refresh) {
@@ -41,7 +41,7 @@ const refreshToken = async () => {
     );
 
     const newAdminData = { ...adminData, token: response.data.accessToken };
-    localStorage.setItem("adminData", JSON.stringify(newAdminData));
+    sessionStorage.setItem("adminData", JSON.stringify(newAdminData));
 
     return response.data.accessToken;
   } catch (error) {
@@ -53,7 +53,7 @@ const refreshToken = async () => {
 // 🔹 Har bir so‘rov oldidan tokenni tekshirish
 api.interceptors.request.use(
   async (config) => {
-    let adminData = JSON.parse(localStorage.getItem("adminData"));
+    let adminData = JSON.parse(sessionStorage.getItem("adminData"));
     let token = adminData?.token;
 
     if (token && isTokenExpired(token)) {

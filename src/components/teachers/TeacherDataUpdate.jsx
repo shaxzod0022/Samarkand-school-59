@@ -12,7 +12,7 @@ const TeacherDataUpdate = () => {
   const [teacherId, setTeacherId] = useState(null);
 
   useEffect(() => {
-    const storeTeacher = localStorage.getItem("teacherData");
+    const storeTeacher = sessionStorage.getItem("teacherData");
     if (storeTeacher) {
       const data = JSON.parse(storeTeacher);
       setTeacherId(data.teacher._id);
