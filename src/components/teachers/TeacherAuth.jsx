@@ -9,10 +9,12 @@ const TeacherAuth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await axios.post(
         "https://schoole-test-site.onrender.com/api/teacher/login-teacher",
@@ -29,6 +31,8 @@ const TeacherAuth = () => {
         error.response?.data?.message && "Login yoki parol xato!"
       );
       console.error(error.response?.data?.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -103,7 +107,12 @@ const TeacherAuth = () => {
               {errorMessage}
             </span>
           )}
-          <Button title="Kirish" className="w-full" type={"submit"} />
+          <Button
+            title={isLoading ? "Kutib turing yuklanmoqda..." : "Kirish"}
+            className="w-full"
+            type={"submit"}
+            disabled={isLoading}
+          />
         </form>
       </div>
     </div>

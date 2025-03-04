@@ -9,12 +9,12 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // 🆕 Loading state qo‘shildi
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // ✅ Login tugmasi bosilganda yuklanish boshlanadi
+    setIsLoading(true);
     try {
       const res = await axios.post(
         "https://schoole-test-site.onrender.com/api/students/login-student",
@@ -31,7 +31,7 @@ const Login = () => {
         error.response?.data?.message || "Login yoki parol xato!"
       );
     } finally {
-      setIsLoading(false); // ✅ Har qanday holatda yuklanish tugaydi
+      setIsLoading(false);
     }
   };
 
