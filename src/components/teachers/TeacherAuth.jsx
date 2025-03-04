@@ -95,7 +95,7 @@ const TeacherAuth = () => {
               className="!bg-white !text-formaColor !p-0"
               onClick={(e) => {
                 e.preventDefault();
-                setErrorMessage("Dasturchiga murojat qiling!");
+                setErrorMessage("Adminga murojat qiling!");
                 setTimeout(() => {
                   setErrorMessage(null);
                 }, 4000);
