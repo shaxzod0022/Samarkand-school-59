@@ -1,91 +1,26 @@
 import { instagram, telegram, whatsapp, youtube } from "../assets";
 
-export const footerLinks = [
-  {
-    title: "Aloqa va Savollar",
-    links: [
-      {
-        url: "https://www.samtuit.uz/uz",
-        linkTitle: "Samtuit uz",
-      },
-      {
-        url: "",
-        linkTitle: "Savollaringiz bo'lsa?",
-      },
-      {
-        url: "",
-        linkTitle: "Maxfiylik Siyosati",
-      },
-      {
-        url: "",
-        linkTitle: "Saytning Foydalanish Qoidalari",
-      },
-    ],
-  },
-  {
-    title: "O'quvchilarga Yordam",
-    links: [
-      {
-        url: "",
-        linkTitle: "O'quvchilar uchun Resurslar",
-      },
-      {
-        url: "",
-        linkTitle: "O'qish Bo'yicha Qo'llanmalar",
-      },
-      {
-        url: "",
-        linkTitle: "Maktab Formasi",
-      },
-      {
-        url: "",
-        linkTitle: "O'quvchilar Yutuqlari",
-      },
-    ],
-  },
-  {
-    title: "Yangiliklar",
-    links: [
-      {
-        url: "",
-        linkTitle: "Yangiliklar va Tadbirlar",
-      },
-      {
-        url: "",
-        linkTitle: "Maktab Qoidalari",
-      },
-      {
-        url: "",
-        linkTitle: "O'quvchilar Yutuqlari",
-      },
-      {
-        url: "",
-        linkTitle: "O'qish Bo'yicha Qo'llanmalar",
-      },
-    ],
-  },
-  {
-    title: "Bog'lanish",
-    links: [
-      {
-        url: "",
-        linkTitle: telegram,
-      },
-      {
-        url: "",
-        linkTitle: instagram,
-      },
-      {
-        url: "",
-        linkTitle: whatsapp,
-      },
-      {
-        url: "",
-        linkTitle: youtube,
-      },
-    ],
-  },
-];
+export const footerLinks = {
+  title: "Bog'lanish",
+  links: [
+    {
+      url: "",
+      linkTitle: telegram,
+    },
+    {
+      url: "",
+      linkTitle: instagram,
+    },
+    {
+      url: "",
+      linkTitle: whatsapp,
+    },
+    {
+      url: "",
+      linkTitle: youtube,
+    },
+  ],
+};
 
 export const teacherLinks = [
   {

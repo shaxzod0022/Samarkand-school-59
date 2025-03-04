@@ -48,9 +48,9 @@ const Navbar = () => {
           />
         </h1>
         <p
-          className={`${styles.paragraph} text-white max-w-[250px] sm:block hidden text-center`}
+          className={`${styles.paragraph} text-white max-w-[250px] sm:block hidden`}
         >
-          O'zbekiston Respublikasi oliy va o'rta maxzus ta'lim vazirligi
+          O‘zbekiston Respublikasi maktabgacha va maktab ta'limi vazirligi
         </p>
       </div>
       <div
