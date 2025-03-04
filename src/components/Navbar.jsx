@@ -36,11 +36,11 @@ const Navbar = () => {
     <div
       className={`${styles.fBetween} ${styles.container} flex-wrap bg-formaColor fixed top-0 left-[50%] translate-x-[-50%] z-50 py-3 gap-2`}
     >
-      <div className="sm:w-auto flex gap-3 items-center">
-        <h1
-          className={`${styles.heading1} sm:w-[70px] w-[50px] cursor-pointer flex sm:mb-0`}
-          onClick={() => navigate(`/home_page`)}
-        >
+      <div
+        className="sm:w-auto flex gap-3 items-center cursor-pointer"
+        onClick={() => navigate(`/home_page`)}
+      >
+        <h1 className={`${styles.heading1} sm:w-[70px] w-[50px] flex sm:mb-0`}>
           <img
             className="rounded-full w-full"
             src={logo}
@@ -57,7 +57,7 @@ const Navbar = () => {
         className={`${styles.fWrap} sm:w-auto sm:justify-center justify-between text-center sm:gap-5 gap-2 relative`}
       >
         {!studentData ? (
-          <div className="text-white">Loading...</div>
+          <div className="text-white">Kuting...</div>
         ) : (
           <div
             onClick={() => navigate(`user_info/${studentData._id}`)}
