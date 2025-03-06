@@ -17,7 +17,7 @@ const AdminAuth = () => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://schoole-test-site.onrender.com/api/admin/login",
+        "https://schoole-59.onrender.com/api/admin/login",
         formData
       );
       sessionStorage.setItem("adminData", JSON.stringify(res.data));

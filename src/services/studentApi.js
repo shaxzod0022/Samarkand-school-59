@@ -2,7 +2,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 const studentApi = axios.create({
-  baseURL: "https://schoole-test-site.onrender.com/api",
+  baseURL: "https://schoole-59.onrender.com/api",
 });
 
 const isTokenExpired = (token) => {
@@ -25,7 +25,7 @@ const refreshToken = async () => {
     }
 
     const response = await axios.post(
-      "https://schoole-test-site.onrender.com/api/auth/refresh",
+      "https://schoole-59.onrender.com/api/auth/refresh",
       {
         refreshToken: refresh,
       }

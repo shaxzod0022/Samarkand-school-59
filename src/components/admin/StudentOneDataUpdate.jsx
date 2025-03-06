@@ -16,7 +16,7 @@ const StudentOneDataUpdate = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`https://schoole-test-site.onrender.com/api/students/update-student-data/${id}`, studentData);
+      await axios.put(`https://schoole-59.onrender.com/api/students/update-student-data/${id}`, studentData);
       setMessage("Ma'lumotlar muvaffaqiyatli yangilandi!");
       setStudentData({});
     } catch (err) {

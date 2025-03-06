@@ -14,7 +14,7 @@ const StudentCreate = () => {
     e.preventDefault();
     try {
       await axios.post(
-        `https://schoole-test-site.onrender.com/api/students/create`,
+        `https://schoole-59.onrender.com/api/students/create`,
         studentData
       );
       setMessage("Ma'lumotlar muvaffaqiyatli qo'shildi!");

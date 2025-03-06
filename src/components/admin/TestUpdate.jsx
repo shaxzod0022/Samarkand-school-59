@@ -44,7 +44,7 @@ const TestUpdate = ({ newClass, testData, onClose }) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://schoole-test-site.onrender.com/api/tests/update-test/${testData._id}`,
+        `https://schoole-59.onrender.com/api/tests/update-test/${testData._id}`,
         formData
       );
       setMessage(response?.data?.message || "Muvaffaqiyatli yangilandi");

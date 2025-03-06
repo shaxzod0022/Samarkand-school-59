@@ -11,7 +11,7 @@ const TeacherOneData = () => {
     const fetchTeacherData = async () => {
       try {
         const response = await axios.get(
-          `https://schoole-test-site.onrender.com/api/teacher/teacher-data`
+          `https://schoole-59.onrender.com/api/teacher/teacher-data`
         );
         const teacherOneData = response.data.find((i) => i._id === id);
         setTeacher(teacherOneData);

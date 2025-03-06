@@ -17,7 +17,7 @@ const Login = () => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://schoole-test-site.onrender.com/api/students/login-student",
+        "https://schoole-59.onrender.com/api/students/login-student",
         formData
       );
       sessionStorage.setItem("studentData", JSON.stringify(res.data));

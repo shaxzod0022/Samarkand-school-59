@@ -19,7 +19,7 @@ const SubjectCreate = () => {
     setError(null);
     try {
       const response = await axios.post(
-        "https://schoole-test-site.onrender.com/api/subjects/create-subject",
+        "https://schoole-59.onrender.com/api/subjects/create-subject",
         subjectData
       );
       setMessage(response.data.message);

@@ -11,7 +11,7 @@ const SubjectsData = () => {
     const fetchSubject = async () => {
       try {
         const response = await axios.get(
-          "https://schoole-test-site.onrender.com/api/subjects/subjects-data"
+          "https://schoole-59.onrender.com/api/subjects/subjects-data"
         );
         setSubjectsData(response.data);
       } catch (error) {

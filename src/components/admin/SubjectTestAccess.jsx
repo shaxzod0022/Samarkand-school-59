@@ -12,7 +12,7 @@ const SubjectTestAccess = () => {
     const fetchSubjects = async () => {
       try {
         const response = await axios.get(
-          "https://schoole-test-site.onrender.com/api/subjects/subjects-data"
+          "https://schoole-59.onrender.com/api/subjects/subjects-data"
         );
         setSubjectsData(response.data);
       } catch (error) {
@@ -23,7 +23,7 @@ const SubjectTestAccess = () => {
     const getSubjectAccess = async () => {
       try {
         const response = await axios.get(
-          `https://schoole-test-site.onrender.com/api/subject-access/check-subject-all/${studentId}`
+          `https://schoole-59.onrender.com/api/subject-access/check-subject-all/${studentId}`
         );
 
         const accessMap = {};
@@ -47,7 +47,7 @@ const SubjectTestAccess = () => {
         ? "/api/subject-access/block-subject-access"
         : "/api/subject-access/allow-subject-access";
 
-      await axios.post(`https://schoole-test-site.onrender.com${endpoint}`, {
+      await axios.post(`https://schoole-59.onrender.com${endpoint}`, {
         studentId,
         subjectId,
       });

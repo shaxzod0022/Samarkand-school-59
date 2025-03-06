@@ -17,7 +17,7 @@ const TeacherAuth = () => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        "https://schoole-test-site.onrender.com/api/teacher/login-teacher",
+        "https://schoole-59.onrender.com/api/teacher/login-teacher",
         formData
       );
       sessionStorage.setItem("teacherData", JSON.stringify(res.data));

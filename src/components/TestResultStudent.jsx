@@ -12,7 +12,7 @@ const TestResultStudent = () => {
       try {
         // Studentning ishlagan test natijalari
         const resultsResponse = await axios.get(
-          `https://schoole-test-site.onrender.com/api/results-tests/student-results/${id}`
+          `https://schoole-59.onrender.com/api/results-tests/student-results/${id}`
         );
         if (!resultsResponse?.data?.results?.length) {
           setMergedResults([]);
@@ -23,7 +23,7 @@ const TestResultStudent = () => {
 
         // Fanlar ma'lumotlarini olish
         const subjectsResponse = await axios.get(
-          `https://schoole-test-site.onrender.com/api/subjects/subjects-data`
+          `https://schoole-59.onrender.com/api/subjects/subjects-data`
         );
         if (!subjectsResponse?.data?.length) {
           setMergedResults([]);

@@ -14,7 +14,7 @@ const SubjectOneData = () => {
     const fetchSubjectData = async () => {
       try {
         const response = await axios.get(
-          "https://schoole-test-site.onrender.com/api/subjects/subjects-data"
+          "https://schoole-59.onrender.com/api/subjects/subjects-data"
         );
         const subjectData = response.data.find((i) => i._id.toString() === id);
 
@@ -36,7 +36,7 @@ const SubjectOneData = () => {
   const deleteSubject = async () => {
     try {
       await axios.delete(
-        `https://schoole-test-site.onrender.com/api/subjects/subject-delete/${id}`
+        `https://schoole-59.onrender.com/api/subjects/subject-delete/${id}`
       );
       setSubject(null);
       navigate("/hello-admin/panel/subjects");

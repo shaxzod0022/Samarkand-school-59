@@ -23,7 +23,7 @@ const TeacherDataUpdate = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`https://schoole-test-site.onrender.com/api/teacher/update-teacher-data/${teacherId}`, teacherData);
+      await axios.put(`https://schoole-59.onrender.com/api/teacher/update-teacher-data/${teacherId}`, teacherData);
       setMessage("Ma'lumotlar muvaffaqiyatli yangilandi!");
       setTeacherData({});
     } catch (err) {

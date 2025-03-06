@@ -31,7 +31,7 @@ const TestAddToSubject = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://schoole-test-site.onrender.com/api/tests/create-test", formData);
+      const response = await axios.post("https://schoole-59.onrender.com/api/tests/create-test", formData);
       setMessage(response?.data?.message || "Muvaffaqiyatli");
       setFormData({
         subjectId: id || "",

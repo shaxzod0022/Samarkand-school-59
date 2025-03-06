@@ -21,7 +21,7 @@ const SubjectTestsData = () => {
     const fetchTests = async () => {
       try {
         const response = await axios.get(
-          `https://schoole-test-site.onrender.com/api/tests/tests-by-subject/${id}`
+          `https://schoole-59.onrender.com/api/tests/tests-by-subject/${id}`
         );
         setTestsData(response.data);
       } catch (error) {
@@ -35,7 +35,7 @@ const SubjectTestsData = () => {
   const deleteTest = async (testId) => {
     try {
       const response = await axios.delete(
-        `https://schoole-test-site.onrender.com/api/tests/delete-test/${testId}`
+        `https://schoole-59.onrender.com/api/tests/delete-test/${testId}`
       );
       setMessage(response?.data?.message || "Muvaffaqiyatli o'chirildi");
     } catch (error) {

@@ -17,7 +17,7 @@ const StudentOneDataPage = () => {
   const deleteStudent = async () => {
     try {
       await axios.delete(
-        `https://schoole-test-site.onrender.com/api/students/delete-student/${id}`
+        `https://schoole-59.onrender.com/api/students/delete-student/${id}`
       );
       navigate("/hello-admin/panel/students");
     } catch (error) {

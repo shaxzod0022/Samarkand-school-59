@@ -40,7 +40,7 @@ const Test = () => {
     const checkSubject = async () => {
       try {
         const response = await axios.get(
-          `https://schoole-test-site.onrender.com/api/subject-access/check-subject-access/${studentId}/${subjectId}`
+          `https://schoole-59.onrender.com/api/subject-access/check-subject-access/${studentId}/${subjectId}`
         );
         setCheckSubjectAccess(response.data);
       } catch (error) {

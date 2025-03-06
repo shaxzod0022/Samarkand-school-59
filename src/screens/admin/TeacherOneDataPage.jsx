@@ -18,7 +18,7 @@ const TeacherOneDataPage = () => {
 
   const deleteTeacher = async () => {
     try {
-      await axios.delete(`https://schoole-test-site.onrender.com/api/teacher/delete-teacher/${id}`, {
+      await axios.delete(`https://schoole-59.onrender.com/api/teacher/delete-teacher/${id}`, {
         headers: { Authorization: `Bearer ${adminToken.token}` },
       });
       navigate("/hello-admin/panel/teachers");

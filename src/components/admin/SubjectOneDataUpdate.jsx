@@ -22,7 +22,7 @@ const SubjectOneDataUpdate = () => {
     setError(null);
     try {
       const response = await axios.put(
-        `https://schoole-test-site.onrender.com/api/subjects/subject-update/${id}`,
+        `https://schoole-59.onrender.com/api/subjects/subject-update/${id}`,
         subjectData
       );
 
