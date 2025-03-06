@@ -86,7 +86,7 @@ const SubjectOneData = () => {
             className={`${styles.paragraph} w-full !font-bold rounded-lg p-2 bg-slate-200`}
           >
             Testga ajratilgan vaqt:{" "}
-            <span className="font-normal">{subject.duration}</span>
+            <span className="font-normal">{subject.duration} minut</span>
           </p>
           <p className={`${styles.paragraph} text-red-500`}>
             E'tibor bering. Agar fanni o'chirsangiz shu fanga doir testlar ham

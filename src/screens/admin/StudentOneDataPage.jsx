@@ -19,7 +19,7 @@ const StudentOneDataPage = () => {
       await axios.delete(
         `https://schoole-59.onrender.com/api/students/delete-student/${id}`
       );
-      navigate("/hello-admin/panel/students");
+      navigate(-1);
     } catch (error) {
       console.error(error);
     }

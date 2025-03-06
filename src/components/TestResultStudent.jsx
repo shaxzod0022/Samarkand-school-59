@@ -10,7 +10,6 @@ const TestResultStudent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Studentning ishlagan test natijalari
         const resultsResponse = await axios.get(
           `https://schoole-59.onrender.com/api/results-tests/student-results/${id}`
         );
@@ -21,7 +20,6 @@ const TestResultStudent = () => {
 
         const results = resultsResponse.data.results;
 
-        // Fanlar ma'lumotlarini olish
         const subjectsResponse = await axios.get(
           `https://schoole-59.onrender.com/api/subjects/subjects-data`
         );
@@ -32,7 +30,6 @@ const TestResultStudent = () => {
 
         const subjects = subjectsResponse.data;
 
-        // Fanlar va test natijalarini birlashtirish
         const mergedData = results
           .map((result) => {
             const subject = subjects.find(
@@ -40,7 +37,7 @@ const TestResultStudent = () => {
             );
             return subject ? { ...subject, testResults: result.results } : null;
           })
-          .filter(Boolean); // Null qiymatlarni olib tashlash
+          .filter(Boolean);
         setMergedResults(mergedData);
       } catch (error) {
         console.error("Ma'lumotlarni olishda xatolik:", error);

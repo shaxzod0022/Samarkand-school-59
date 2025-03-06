@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { styles } from "../../util/styles";
-import api from "../../services/api";
 import { useParams } from "react-router";
+import axios from "axios";
 
 const StudentOneData = () => {
   const [student, setStudent] = useState(null);
@@ -10,7 +10,7 @@ const StudentOneData = () => {
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
-        const response = await api.get(`/students/students-data`);
+        const response = await axios.get(`https://schoole-59.onrender.com/api/students/students-data`);
         const studentOneData = response.data.find((i) => i._id === id);
         setStudent(studentOneData);
       } catch (err) {
