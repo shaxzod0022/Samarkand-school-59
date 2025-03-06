@@ -56,7 +56,7 @@ const TestResultStudent = () => {
   }
 
   return (
-    <div className="w-full h-[58vh]">
+    <div className="w-full">
       <h2 className={`${styles.heading2} text-center mb-3`}>
         Ishlagan test natijalari
       </h2>
