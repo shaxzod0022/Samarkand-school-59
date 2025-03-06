@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { styles } from "../../util/styles";
-import api from "../../services/api";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const StudentsData = () => {
   const [students, setStudents] = useState(null);
@@ -10,7 +10,9 @@ const StudentsData = () => {
   useEffect(() => {
     const fetchStudentsData = async () => {
       try {
-        const response = await api.get(`/students/students-data`);
+        const response = await axios.get(
+          `https://schoole-59.onrender.com/api/students/students-data`
+        );
         setStudents(response.data);
       } catch (err) {
         console.error("O‘qituvchilarni yuklashda xatolik:", err);
