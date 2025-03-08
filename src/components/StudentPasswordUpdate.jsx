@@ -10,6 +10,7 @@ const StudentsPasswordUpdate = () => {
   const [error, setError] = useState("");
   const [studentStoreData, setStudentStoreData] = useState();
   const [isLoad, setIsLoad] = useState(false);
+  const [inputError, setInputError] = useState(""); // 🔴 Yangi xatolik holati
 
   useEffect(() => {
     const storeStudentData = sessionStorage.getItem("studentData");
@@ -22,6 +23,15 @@ const StudentsPasswordUpdate = () => {
   const handlePasswordUpdate = async (e) => {
     e.preventDefault();
     setIsLoad(true);
+
+    // 🔴 Kamida 4 ta belgidan iborat bo‘lishini tekshiramiz
+    if (passData.newPass.length < 4) {
+      setInputError("Parol kamida 4 ta belgidan iborat bo‘lishi kerak!");
+      setIsLoad(false);
+      return;
+    }
+
+    setInputError("");
 
     try {
       await studentApi.put(`/students/update-password`, passData, {
@@ -37,15 +47,16 @@ const StudentsPasswordUpdate = () => {
   };
 
   useEffect(() => {
-    if (message || error) {
+    if (message || error || inputError) {
       const timer = setTimeout(() => {
         setMessage("");
         setError("");
+        setInputError("");
       }, 5000);
 
       return () => clearTimeout(timer);
     }
-  }, [message, error]);
+  }, [message, error, inputError]);
 
   return (
     <div className={`w-full`}>
@@ -62,7 +73,7 @@ const StudentsPasswordUpdate = () => {
             setPassData({ ...passData, oldPass: e.target.value })
           }
           required
-          className={`${styles.input} ${error && "border-red-400"}`}
+          className={`${styles.input}`}
         />
         <input
           type="password"
@@ -72,8 +83,10 @@ const StudentsPasswordUpdate = () => {
             setPassData({ ...passData, newPass: e.target.value })
           }
           required
-          className={`${styles.input}`}
+          className={`${styles.input} ${inputError ? "border-red-400" : ""}`}
         />
+        {inputError && <p className="text-red-500">{inputError}</p>}{" "}
+        {/* 🔴 Xatolik chiqarish */}
         <Button disabled={isLoad} type={"submit"} title={"Tasdiqlash"} />
       </form>
       <Message successMessage={message} errorMessage={error} />

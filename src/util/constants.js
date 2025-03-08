@@ -85,7 +85,7 @@ export const adminPermittedInfo = [
     type: "radio",
   },
   {
-    label: "Telefon raqam",
+    label: "Telefon raqam(998 93 123 45 67)",
     name: "phone",
     type: "number",
   },
@@ -153,7 +153,7 @@ export const teacherCreate = [
     type: "radio",
   },
   {
-    label: "Telefon raqam",
+    label: "Telefon raqam(998 93 123 45 67)",
     name: "phone",
     type: "number",
   },
