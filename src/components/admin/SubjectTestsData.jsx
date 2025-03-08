@@ -15,6 +15,7 @@ const SubjectTestsData = () => {
   const [fullTestData, setFullTestData] = useState();
   const [updateHidden, setUpdateHidden] = useState(false);
   const [fullTestHidden, setFullTestHidden] = useState(false);
+  const [isLoad, setIsLoad] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const SubjectTestsData = () => {
   }, [id]);
 
   const deleteTest = async (testId) => {
+    setIsLoad(true);
     try {
       const response = await axios.delete(
         `https://schoole-59.onrender.com/api/tests/delete-test/${testId}`
@@ -40,6 +42,8 @@ const SubjectTestsData = () => {
       setMessage(response?.data?.message || "Muvaffaqiyatli o'chirildi");
     } catch (error) {
       setError(error);
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -103,6 +107,7 @@ const SubjectTestsData = () => {
                 title={`O'chirish`}
                 className={`hover:bg-red-400 !py-1 !px-3 active:bg-red-500 bg-red-500`}
                 onClick={() => deleteTest(item._id)}
+                disabled={isLoad}
               />
               <Button
                 onClick={() => updateTest(item._id)}

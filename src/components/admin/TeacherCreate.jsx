@@ -10,6 +10,7 @@ const TeacherCreate = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [adminToken, setAdminToken] = useState();
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     const storeAdminData = sessionStorage.getItem("adminData");
@@ -20,6 +21,7 @@ const TeacherCreate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
     try {
       await api.post(`/teacher/create`, teacherData, {
         headers: { Authorization: `Bearer ${adminToken.token}` },
@@ -28,6 +30,8 @@ const TeacherCreate = () => {
       setTeacherData({});
     } catch (err) {
       setError(err.response?.data?.message);
+    } finally {
+      setIsLoad(false);
     }
 
     setTimeout(() => {
@@ -101,7 +105,7 @@ const TeacherCreate = () => {
             </div>
           ))}
         </div>
-        <Button type={"submit"} title={"Qo'shish"} />
+        <Button disabled={isLoad} type={"submit"} title={"Qo'shish"} />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

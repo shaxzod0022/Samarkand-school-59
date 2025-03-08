@@ -11,16 +11,19 @@ const TeacherOneDataUpdate = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const { id } = useParams();
+  const [isLoad, setIsLoad] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoad(true);
     try {
       await api.put(`/teacher/update-teacher-data/${id}`, teacherData);
       setMessage("Ma'lumotlar muvaffaqiyatli yangilandi!");
       setTeacherData({});
     } catch (err) {
       setError(err.response?.data?.message);
+    } finally {
+      setIsLoad(false);
     }
 
     setTimeout(() => {
@@ -94,7 +97,7 @@ const TeacherOneDataUpdate = () => {
             </div>
           ))}
         </div>
-        <Button type={"submit"} title={"Yangilash"} />
+        <Button disabled={isLoad} type={"submit"} title={"Yangilash"} />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

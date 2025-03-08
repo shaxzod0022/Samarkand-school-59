@@ -11,16 +11,23 @@ const StudentOneDataUpdate = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const { id } = useParams();
+  const [isLoad, setIsLoad] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
 
     try {
-      await axios.put(`https://schoole-59.onrender.com/api/students/update-student-data/${id}`, studentData);
+      await axios.put(
+        `https://schoole-59.onrender.com/api/students/update-student-data/${id}`,
+        studentData
+      );
       setMessage("Ma'lumotlar muvaffaqiyatli yangilandi!");
       setStudentData({});
     } catch (err) {
       setError(err.response?.data?.message);
+    } finally {
+      setIsLoad(false);
     }
 
     setTimeout(() => {
@@ -95,8 +102,7 @@ const StudentOneDataUpdate = () => {
             </div>
           ))}
         </div>
-
-        <Button type={"submit"} title={"Yangilash"} />
+        <Button disabled={isLoad} type={"submit"} title={"Yangilash"} />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

@@ -7,6 +7,7 @@ const SubjectTestAccess = () => {
   const [subjectsData, setSubjectsData] = useState([]);
   const { id: studentId } = useParams();
   const [access, setAccess] = useState({});
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     const fetchSubjects = async () => {
@@ -42,6 +43,7 @@ const SubjectTestAccess = () => {
   }, [studentId]);
 
   const subjectAccess = async (subjectId) => {
+    setIsLoad(true);
     try {
       const endpoint = access[subjectId]
         ? "/api/subject-access/block-subject-access"
@@ -51,14 +53,14 @@ const SubjectTestAccess = () => {
         studentId,
         subjectId,
       });
-
-      // API chaqirilgandan keyin access obyektini yangilash
       setAccess((prev) => ({
         ...prev,
         [subjectId]: !prev[subjectId],
       }));
     } catch (error) {
       console.error("Ruxsatni yangilashda xatolik:", error);
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -102,6 +104,7 @@ const SubjectTestAccess = () => {
               </p>
             </div>
             <button
+              disabled={isLoad}
               onClick={() => subjectAccess(item._id)}
               className={`transition-all duration-300 border-2 rounded-2xl w-[50px] h-[25px] ${
                 access[item._id] ? "border-green-500" : "border-red-500"

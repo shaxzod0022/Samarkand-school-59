@@ -15,6 +15,7 @@ const TestAddToSubject = () => {
     correctAnswer: "",
     options: { A: "", B: "", C: "", D: "" },
   });
+  const [isLoad, setIsLoad] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,8 +31,12 @@ const TestAddToSubject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
     try {
-      const response = await axios.post("https://schoole-59.onrender.com/api/tests/create-test", formData);
+      const response = await axios.post(
+        "https://schoole-59.onrender.com/api/tests/create-test",
+        formData
+      );
       setMessage(response?.data?.message || "Muvaffaqiyatli");
       setFormData({
         subjectId: id || "",
@@ -41,6 +46,8 @@ const TestAddToSubject = () => {
       });
     } catch (error) {
       setError(error.response?.data?.message || "Xatolik!");
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -113,7 +120,7 @@ const TestAddToSubject = () => {
             </div>
           ))}
         </div>
-        <Button type="submit" title={`Qo'shish`} />
+        <Button disabled={isLoad} type="submit" title={`Qo'shish`} />
         <Message errorMessage={error} successMessage={message} />
       </form>
     </>

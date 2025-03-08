@@ -9,6 +9,7 @@ const TeacherPasswordUpdate = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [teacherId, setTeacherId] = useState();
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     const storeTeacherData = sessionStorage.getItem("teacherData");
@@ -20,7 +21,7 @@ const TeacherPasswordUpdate = () => {
 
   const handlePasswordUpdate = async (e) => {
     e.preventDefault();
-
+    setIsLoad(true);
     try {
       await teacherApi.put(
         `/teacher/update-password/${teacherId.teacher._id}`,
@@ -31,6 +32,8 @@ const TeacherPasswordUpdate = () => {
       setPassData({ oldPass: "", newPass: "" });
     } catch (error) {
       setError(error.response?.data?.message || "Serverda xatolik yuz berdi!");
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -74,7 +77,7 @@ const TeacherPasswordUpdate = () => {
           required
           className={`${styles.input}`}
         />
-        <Button type={"submit"} title={"Tasdiqlash"} />
+        <Button disabled={isLoad} type={"submit"} title={"Tasdiqlash"} />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

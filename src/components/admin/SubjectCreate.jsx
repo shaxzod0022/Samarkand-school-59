@@ -13,8 +13,11 @@ const SubjectCreate = () => {
   });
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoad, setIsLoad] = useState(false);
+
   const submitSubject = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
     setMessage(null);
     setError(null);
     try {
@@ -31,6 +34,8 @@ const SubjectCreate = () => {
       });
     } catch (error) {
       setError(error.response?.data?.message || "Xatolik yuz berdi!");
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -112,7 +117,7 @@ const SubjectCreate = () => {
             type="number"
           />
         </div>
-        <Button type="submit" title="Qo'shish" />
+        <Button disabled={isLoad} type="submit" title="Qo'shish" />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

@@ -9,6 +9,7 @@ const SubjectOneData = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     const fetchSubjectData = async () => {
@@ -34,6 +35,7 @@ const SubjectOneData = () => {
   }, [id]);
 
   const deleteSubject = async () => {
+    setIsLoad(true);
     try {
       await axios.delete(
         `https://schoole-59.onrender.com/api/subjects/subject-delete/${id}`
@@ -43,6 +45,8 @@ const SubjectOneData = () => {
     } catch (error) {
       console.error(error);
       setError("Fan o‘chirilmadi! Qayta urinib ko‘ring.");
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -96,6 +100,7 @@ const SubjectOneData = () => {
             title={`Fanni o'chirish`}
             className={`hover:bg-red-400 active:bg-red-500 bg-red-500`}
             onClick={deleteSubject}
+            disabled={isLoad}
           />
         </div>
         <div className={`w-full sm:w-[27%] ${styles.fCol} sm:mt-0 mt-5`}>

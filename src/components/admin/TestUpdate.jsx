@@ -15,8 +15,8 @@ const TestUpdate = ({ newClass, testData, onClose }) => {
     correctAnswer: "",
     options: { A: "", B: "", C: "", D: "" },
   });
+  const [isLoad, setIsLoad] = useState(false);
 
-  // testData o'zgarganda, formData ni yangilash
   useEffect(() => {
     if (testData) {
       setFormData({
@@ -42,6 +42,7 @@ const TestUpdate = ({ newClass, testData, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
     try {
       const response = await axios.put(
         `https://schoole-59.onrender.com/api/tests/update-test/${testData._id}`,
@@ -49,13 +50,14 @@ const TestUpdate = ({ newClass, testData, onClose }) => {
       );
       setMessage(response?.data?.message || "Muvaffaqiyatli yangilandi");
 
-      // Tahrirlash oynasini yopish
       setTimeout(() => {
         setMessage("");
         onClose();
       }, 1500);
     } catch (error) {
       setError(error.response?.data?.message || "Xatolik yuz berdi");
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -139,7 +141,7 @@ const TestUpdate = ({ newClass, testData, onClose }) => {
           ))}
         </div>
         <div className={`${styles.fStart} gap-3`}>
-          <Button type="submit" title={`Yangilash`} />
+          <Button disabled={isLoad} type="submit" title={`Yangilash`} />
           <Button
             title={"Bekor qilish"}
             className={`hover:bg-red-400 active:bg-red-500 bg-red-500`}

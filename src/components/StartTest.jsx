@@ -13,9 +13,10 @@ const StartTest = () => {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [tests, setTests] = useState();
   const [studentId, setStudentId] = useState("");
-  const [countdown, setCountdown] = useState(null); // Test vaqti
+  const [countdown, setCountdown] = useState(null);
   const [subjectInfo, setSubjectInfo] = useState();
-  const [startTime, setStartTime] = useState(null); // 🕒 Test boshlanish vaqti
+  const [startTime, setStartTime] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getSubject = async () => {
@@ -79,6 +80,7 @@ const StartTest = () => {
   }, [id]);
 
   const submitTest = useCallback(async () => {
+    setIsLoading(true);
     const answers = Object.entries(selectedOptions).map(
       ([questionId, selectedOption]) => ({
         questionId,
@@ -90,7 +92,7 @@ const StartTest = () => {
       studentId: studentId,
       subjectId: id,
       answers,
-      timeTaken: Math.floor((Date.now() - startTime) / 1000), // 🕒 O‘tgan vaqt (sekundda)
+      timeTaken: Math.floor((Date.now() - startTime) / 1000),
     };
 
     try {
@@ -107,8 +109,10 @@ const StartTest = () => {
       navigate(`/home_page`);
     } catch (error) {
       console.error("Testni jo‘natishda xatolik:", error);
+    } finally {
+      setIsLoading(false);
     }
-  }, [id, studentId, selectedOptions, startTime, navigate]); // ✅ useCallback dependencies qo‘shildi
+  }, [id, studentId, selectedOptions, startTime, navigate]); 
 
   useEffect(() => {
     if (countdown !== null && countdown > 0) {
@@ -147,7 +151,9 @@ const StartTest = () => {
 
   if (tests.length === 0) {
     return (
-      <h2 className={`${styles.heading2} py-16 text-center`}>Ma'lumot topilmadi</h2>
+      <h2 className={`${styles.heading2} py-16 text-center`}>
+        Ma'lumot topilmadi
+      </h2>
     );
   }
 
@@ -200,6 +206,7 @@ const StartTest = () => {
         subjectInfo={subjectInfo}
         onClose={() => setHidden((i) => !i)}
         submit={submitTest}
+        disabled={isLoading}
       />
     </div>
   );

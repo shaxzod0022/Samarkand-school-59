@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { teacherLinks } from "../../util/constants";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button";
 
 const TeacherPanelMenu = ({ newClass }) => {
   const [path, setPath] = useState("");
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const logout = () => {
     sessionStorage.removeItem("teacherData");
-    window.location.href = "/hello-teacher";
+    navigate("/hello-teacher");
   };
 
   useEffect(() => {

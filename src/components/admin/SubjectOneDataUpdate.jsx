@@ -15,9 +15,11 @@ const SubjectOneDataUpdate = () => {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
+  const [isLoad, setIsLoad] = useState(false);
 
   const submitSubject = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
     setMessage(null);
     setError(null);
     try {
@@ -35,6 +37,8 @@ const SubjectOneDataUpdate = () => {
       });
     } catch (error) {
       setError(error.response?.data?.message || "Xatolik yuz berdi!");
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -114,7 +118,7 @@ const SubjectOneDataUpdate = () => {
             type="number"
           />
         </div>
-        <Button type="submit" title="Yangilash" />
+        <Button disabled={isLoad} type="submit" title="Yangilash" />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

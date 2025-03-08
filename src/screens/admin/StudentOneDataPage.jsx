@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   StudentOneData,
@@ -13,8 +13,10 @@ import axios from "axios";
 const StudentOneDataPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [isLoad, setIsLoad] = useState(false);
 
   const deleteStudent = async () => {
+    setIsLoad(true);
     try {
       await axios.delete(
         `https://schoole-59.onrender.com/api/students/delete-student/${id}`
@@ -22,6 +24,8 @@ const StudentOneDataPage = () => {
       navigate(-1);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -32,6 +36,7 @@ const StudentOneDataPage = () => {
       <StudentOneDataUpdate />
       <TestResultStudent />
       <Button
+        disabled={isLoad}
         onClick={deleteStudent}
         className={`hover:bg-red-400 active:bg-red-500 bg-red-500`}
         title={`O'quvchini o'chirish`}

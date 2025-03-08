@@ -9,9 +9,11 @@ const StudentCreate = () => {
   const [studentData, setStudentData] = useState({});
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [isLoad, setIsLoad] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
     try {
       await axios.post(
         `https://schoole-59.onrender.com/api/students/create`,
@@ -21,6 +23,8 @@ const StudentCreate = () => {
       setStudentData({});
     } catch (err) {
       setError(err.response?.data?.message);
+    } finally {
+      setIsLoad(false);
     }
 
     setTimeout(() => {
@@ -94,7 +98,7 @@ const StudentCreate = () => {
             </div>
           ))}
         </div>
-        <Button type={"submit"} title={"Qo'shish"} />
+        <Button disabled={isLoad} type={"submit"} title={"Qo'shish"} />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

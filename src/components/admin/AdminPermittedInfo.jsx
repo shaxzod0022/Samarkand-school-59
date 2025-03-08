@@ -10,6 +10,7 @@ const AdminPermittedInfo = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [adminId, setAdminId] = useState();
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     const storedAdminData = sessionStorage.getItem("adminData");
@@ -20,6 +21,7 @@ const AdminPermittedInfo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
 
     try {
       await api.put(
@@ -35,6 +37,8 @@ const AdminPermittedInfo = () => {
       setAdminData({});
     } catch (err) {
       setError(err.response?.data?.message);
+    } finally {
+      setIsLoad(false);
     }
 
     setTimeout(() => {
@@ -108,7 +112,7 @@ const AdminPermittedInfo = () => {
             </div>
           ))}
         </div>
-        <Button type={"submit"} title={"Yangilash"} />
+        <Button disabled={isLoad} type={"submit"} title={"Yangilash"} />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

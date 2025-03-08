@@ -9,6 +9,7 @@ const AdminPasswordUpdate = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [adminId, setAdminId] = useState();
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     const storedAdminData = sessionStorage.getItem("adminData");
@@ -19,18 +20,19 @@ const AdminPasswordUpdate = () => {
 
   const handlePasswordUpdate = async (e) => {
     e.preventDefault();
+    setIsLoad(true);
 
     try {
-      await api.put(
-        `/admin/update-password/${adminId.admin._id}`,
-        passData,
-        { headers: { Authorization: `Bearer ${adminId.token}` } }
-      );
+      await api.put(`/admin/update-password/${adminId.admin._id}`, passData, {
+        headers: { Authorization: `Bearer ${adminId.token}` },
+      });
 
       setMessage("Parol muvaffaqiyatli yangilandi");
       setPassData({ oldPass: "", newPass: "" });
     } catch (error) {
       setError(error.response?.data?.message || "Serverda xatolik yuz berdi!");
+    } finally {
+      setIsLoad(false);
     }
   };
 
@@ -74,7 +76,7 @@ const AdminPasswordUpdate = () => {
           required
           className={`${styles.input}`}
         />
-        <Button type={"submit"} title={"Tasdiqlash"} />
+        <Button disabled={isLoad} type={"submit"} title={"Tasdiqlash"} />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

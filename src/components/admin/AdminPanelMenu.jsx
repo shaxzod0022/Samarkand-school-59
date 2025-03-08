@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { adminLinks } from "../../util/constants";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button";
 
 const AdminPanelMenu = ({ newClass }) => {
   const [path, setPath] = useState("");
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const logout = () => {
-    sessionStorage.clear()
-    window.location.href = "/hello-admin";
+    sessionStorage.clear();
+    navigate("/hello-admin");
   };
 
   useEffect(() => {

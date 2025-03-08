@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { styles } from "../util/styles";
 import Button from "./Button";
 
-const CompletedTest = ({ hidden, onClose, subjectInfo, submit }) => {
+const CompletedTest = ({ hidden, onClose, subjectInfo, submit, disabled }) => {
   const [subject, setSubject] = useState(subjectInfo);
 
   useEffect(() => {
@@ -41,7 +41,12 @@ const CompletedTest = ({ hidden, onClose, subjectInfo, submit }) => {
         </h3>
         <div className="flex justify-between gap-4">
           <Button title="Yo'q" onClick={onClose} className="!bg-red-500" />
-          <Button title="Ha" className="!bg-green-500" onClick={submit} />
+          <Button
+            title="Ha"
+            className="!bg-green-500"
+            onClick={submit}
+            disabled={disabled}
+          />
         </div>
       </div>
     </div>

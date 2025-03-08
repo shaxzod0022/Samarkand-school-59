@@ -10,6 +10,7 @@ const TeacherDataUpdate = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [teacherId, setTeacherId] = useState(null);
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     const storeTeacher = sessionStorage.getItem("teacherData");
@@ -21,13 +22,18 @@ const TeacherDataUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoad(true);
     try {
-      await axios.put(`https://schoole-59.onrender.com/api/teacher/update-teacher-data/${teacherId}`, teacherData);
+      await axios.put(
+        `https://schoole-59.onrender.com/api/teacher/update-teacher-data/${teacherId}`,
+        teacherData
+      );
       setMessage("Ma'lumotlar muvaffaqiyatli yangilandi!");
       setTeacherData({});
     } catch (err) {
       setError(err.response?.data?.message);
+    } finally {
+      setIsLoad(false);
     }
 
     setTimeout(() => {
@@ -101,7 +107,7 @@ const TeacherDataUpdate = () => {
             </div>
           ))}
         </div>
-        <Button type={"submit"} title={"Yangilash"} />
+        <Button disabled={isLoad} type={"submit"} title={"Yangilash"} />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>
