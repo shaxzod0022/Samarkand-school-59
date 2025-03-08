@@ -9,107 +9,65 @@ body {
 }
 
 .admin__loader {
-  width: 48px;
-  height: 48px;
   position: relative;
+  border: 24px solid;
+  border-color: #091579  transparent #091579 transparent;
+  animation : rotate 2s linear infinite;
 }
-.admin__loader::before,
-.admin__loader::after {
-  content: "";
+.admin__loader:before,
+.admin__loader:after {
+  content:"";
+  display: block;
+  border: 24px solid transparent;
+  border-left-color: #091579;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 48em;
-  height: 48em;
-  background-image: radial-gradient(circle 10px, #091279 100%, transparent 0),
-    radial-gradient(circle 10px, #091279 100%, transparent 0),
-    radial-gradient(circle 10px, #091279 100%, transparent 0),
-    radial-gradient(circle 10px, #091279 100%, transparent 0),
-    radial-gradient(circle 10px, #091279 100%, transparent 0),
-    radial-gradient(circle 10px, #091279 100%, transparent 0),
-    radial-gradient(circle 10px, #091279 100%, transparent 0),
-    radial-gradient(circle 10px, #091279 100%, transparent 0);
-  background-position: 0em -18em, 0em 18em, 18em 0em, -18em 0em, 13em -13em,
-    -13em -13em, 13em 13em, -13em 13em;
-  background-repeat: no-repeat;
-  font-size: 0.5px;
-  border-radius: 50%;
-  animation: blast 1s ease-in infinite;
+  left: -24px;
+  top: -24px;
+  animation: mvx 1s infinite linear;
 }
-.admin__loader::after {
-  font-size: 1px;
-  background: #091279;
-  animation: bounce 1s ease-in infinite;
+.admin__loader:before {
+  border-color: transparent #091579 transparent transparent;
+  animation-name:mvrx;
+  animation-delay: 0.5s;
 }
-
-@keyframes bounce {
-  0%,
-  100% {
-    font-size: 0.75px;
-  }
-  50% {
-    font-size: 1.5px;
-  }
+@keyframes rotate {
+  100% {transform: rotate(360deg)}
 }
-@keyframes blast {
-  0%,
-  40% {
-    font-size: 0.5px;
-  }
-  70% {
-    opacity: 1;
-    font-size: 4px;
-  }
-  100% {
-    font-size: 6px;
-    opacity: 0;
-  }
+@keyframes mvx {
+  20% , 80% {transform: translateX(0)}
+  50% {transform: translateX(-50%)}
+}
+@keyframes mvrx {
+  20% , 80% {transform: translateX(0)}
+  50% {transform: translateX(50%)}
 }
 
 .access__btn__loader {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
   position: relative;
-  animation: rotate 1s linear infinite;
-}
-.access__btn__loader::before,
-.access__btn__loader::after {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  inset: 0px;
+  border: 3px solid;
+  border-color:green #0000 red #0000;
   border-radius: 50%;
-  border: 5px solid #091279;
-  animation: prixClipFix 2s linear infinite;
+  box-sizing: border-box;
+  animation: 1s rotate linear infinite;
 }
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.access__btn__loader:before , .access__btn__loader:after{
+  content: '';
+  top: 0;
+  left: 0;
+  position: absolute;
+  border: 10px solid transparent;
+  border-bottom-color:red;
+  transform: translate(-10px, 19px) rotate(-35deg);
 }
-
-@keyframes prixClipFix {
-  0% {
-    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
-  }
-  25% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
-  }
-  50% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
-  }
-  75% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
-  }
-  100% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
-  }
+.access__btn__loader:after {
+  border-color: green #0000 #0000 #0000 ;
+  transform: translate(32px, 3px) rotate(-35deg);
+}
+ @keyframes rotate {
+  100%{    transform: rotate(360deg)}
 }
 
 .card-box-shadow {

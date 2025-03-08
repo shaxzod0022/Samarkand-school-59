@@ -19,7 +19,7 @@ const TeacherPanelMenu = ({ newClass }) => {
 
   return (
     <ul
-      className={`${newClass} bg-formaColor top-16 fixed lg:w-[20%] md:w-[25%] sm:w-[30%] w-[60%] h-[100vh] p-5`}
+      className={`${newClass} bg-formaColor text-start top-16 fixed lg:w-[20%] md:w-[25%] sm:w-[30%] w-[60%] h-[100vh] p-5`}
     >
       {teacherLinks.map((item, index) => {
         return (

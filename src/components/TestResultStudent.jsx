@@ -5,12 +5,12 @@ import axios from "axios";
 
 const TestResultStudent = () => {
   const [mergedResults, setMergedResults] = useState([]);
-  const [loading, setLoading] = useState(true); // Loader uchun state
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Ma'lumot yuklanishini boshladik
+      setLoading(true);
       try {
         const resultsResponse = await axios.get(
           `https://schoole-59.onrender.com/api/results-tests/student-results/${id}`
@@ -50,14 +50,13 @@ const TestResultStudent = () => {
         console.error("Ma'lumotlarni olishda xatolik:", error);
         setMergedResults([]);
       } finally {
-        setLoading(false); // Ma'lumot yuklash tugadi
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [id]);
 
-  // 🔵 Loader ko'rsatilishi
   if (loading) {
     return (
       <div className="w-full text-center align-middle py-20 h-[58vh]">
