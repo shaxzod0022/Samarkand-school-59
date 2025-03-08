@@ -16,7 +16,7 @@ export const styles = {
   fEnd: "flex justify-end items-center",
   fCol: "flex flex-col items-center",
   fWrap: "flex flex-wrap gap-10 items-center",
-  fArround: "flex justify-arround items-center flex-wrap",
+  fArround: "flex justify-around items-center flex-wrap",
   button:
     "bg-formaColor py-2 px-6 text-white rounded-sm font-semibold font-figtree tracking-wide hover:bg-buttonHover active:bg-blue-500 sm:text-[16px] text-[14px]",
   link: "text-white text-[18px] hover:text-slate-400 cursor-pointer",

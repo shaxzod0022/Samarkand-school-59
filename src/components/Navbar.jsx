@@ -40,13 +40,13 @@ const Navbar = () => {
         className="sm:w-auto flex gap-3 items-center cursor-pointer"
         onClick={() => navigate(`/home_page`)}
       >
-        <h1 className={`${styles.heading1} sm:w-[70px] w-[50px] flex sm:mb-0`}>
+        <div className={`sm:w-[70px] w-[50px] flex sm:mb-0`}>
           <img
             className="rounded-full w-full"
             src={logo}
             alt="maktab platformasi logotipi"
           />
-        </h1>
+        </div>
         <p
           className={`${styles.paragraph} text-white max-w-[250px] sm:block hidden`}
         >
