@@ -13,16 +13,16 @@ body {
   height: 48px;
   position: relative;
 }
-.admin__loader::before , .admin__loader::after{
-  content: '';
+.admin__loader::before,
+.admin__loader::after {
+  content: "";
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50% , -50%);
+  transform: translate(-50%, -50%);
   width: 48em;
   height: 48em;
-  background-image:
-    radial-gradient(circle 10px, #091279 100%, transparent 0),
+  background-image: radial-gradient(circle 10px, #091279 100%, transparent 0),
     radial-gradient(circle 10px, #091279 100%, transparent 0),
     radial-gradient(circle 10px, #091279 100%, transparent 0),
     radial-gradient(circle 10px, #091279 100%, transparent 0),
@@ -30,9 +30,9 @@ body {
     radial-gradient(circle 10px, #091279 100%, transparent 0),
     radial-gradient(circle 10px, #091279 100%, transparent 0),
     radial-gradient(circle 10px, #091279 100%, transparent 0);
-  background-position: 0em -18em, 0em 18em, 18em 0em, -18em 0em,
-                       13em -13em, -13em -13em, 13em 13em, -13em 13em;
-    background-repeat: no-repeat;
+  background-position: 0em -18em, 0em 18em, 18em 0em, -18em 0em, 13em -13em,
+    -13em -13em, 13em 13em, -13em 13em;
+  background-repeat: no-repeat;
   font-size: 0.5px;
   border-radius: 50%;
   animation: blast 1s ease-in infinite;
@@ -44,20 +44,71 @@ body {
 }
 
 @keyframes bounce {
-  0% , 100%{ font-size: 0.75px }
-  50% { font-size: 1.5px }
+  0%,
+  100% {
+    font-size: 0.75px;
+  }
+  50% {
+    font-size: 1.5px;
+  }
 }
 @keyframes blast {
-  0% , 40% {
+  0%,
+  40% {
     font-size: 0.5px;
   }
   70% {
     opacity: 1;
     font-size: 4px;
   }
-   100% {
-     font-size: 6px;
+  100% {
+    font-size: 6px;
     opacity: 0;
+  }
+}
+
+.access__btn__loader {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+.access__btn__loader::before,
+.access__btn__loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #091279;
+  animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
 }
 

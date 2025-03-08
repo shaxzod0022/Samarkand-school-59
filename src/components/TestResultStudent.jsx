@@ -5,30 +5,36 @@ import axios from "axios";
 
 const TestResultStudent = () => {
   const [mergedResults, setMergedResults] = useState([]);
+  const [loading, setLoading] = useState(true); // Loader uchun state
   const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true); // Ma'lumot yuklanishini boshladik
       try {
         const resultsResponse = await axios.get(
           `https://schoole-59.onrender.com/api/results-tests/student-results/${id}`
         );
-        if (!resultsResponse?.data?.results?.length) {
+
+        const results = resultsResponse?.data?.results || [];
+
+        if (!results.length) {
           setMergedResults([]);
+          setLoading(false);
           return;
         }
-
-        const results = resultsResponse.data.results;
 
         const subjectsResponse = await axios.get(
           `https://schoole-59.onrender.com/api/subjects/subjects-data`
         );
-        if (!subjectsResponse?.data?.length) {
+
+        const subjects = subjectsResponse?.data || [];
+
+        if (!subjects.length) {
           setMergedResults([]);
+          setLoading(false);
           return;
         }
-
-        const subjects = subjectsResponse.data;
 
         const mergedData = results
           .map((result) => {
@@ -38,19 +44,33 @@ const TestResultStudent = () => {
             return subject ? { ...subject, testResults: result.results } : null;
           })
           .filter(Boolean);
+
         setMergedResults(mergedData);
       } catch (error) {
         console.error("Ma'lumotlarni olishda xatolik:", error);
+        setMergedResults([]);
+      } finally {
+        setLoading(false); // Ma'lumot yuklash tugadi
       }
     };
 
     fetchData();
   }, [id]);
 
-  if (!mergedResults.length) {
+  // 🔵 Loader ko'rsatilishi
+  if (loading) {
     return (
       <div className="w-full text-center align-middle py-20 h-[58vh]">
         <span className="admin__loader"></span>
+      </div>
+    );
+  }
+
+  // 🔴 Agar natija bo'lmasa
+  if (mergedResults.length === 0) {
+    return (
+      <div className="w-full text-center align-middle py-20 h-[58vh]">
+        <h2 className={`${styles.heading2}`}>Natijalar yo'q</h2>
       </div>
     );
   }
@@ -83,19 +103,19 @@ const TestResultStudent = () => {
               <span className="font-semibold">{subject.duration} daqiqa</span>
             </p>
             <p className={`${styles.paragraph}`}>
-              Teslar soni:{" "}
+              Testlar soni:{" "}
               <span className="font-semibold">
                 {subject.testResults.length}
               </span>
             </p>
             <p className={`${styles.paragraph}`}>
-              To'g'ri javoblar:
+              To'g'ri javoblar:{" "}
               <span className="font-semibold">
                 {subject.testResults.filter((i) => i.isCorrect).length}
               </span>
             </p>
             <p className={`${styles.paragraph}`}>
-              Noto'g'ri javoblar:
+              Noto'g'ri javoblar:{" "}
               <span className="font-semibold">
                 {subject.testResults.filter((i) => !i.isCorrect).length}
               </span>

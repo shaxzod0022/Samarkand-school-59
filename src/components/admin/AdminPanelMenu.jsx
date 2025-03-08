@@ -19,17 +19,17 @@ const AdminPanelMenu = ({ newClass }) => {
 
   return (
     <ul
-      className={`${newClass} bg-formaColor top-16 fixed lg:w-[20%] md:w-[25%] sm:w-[30%] w-[60%] h-[100vh] p-5`}
+      className={`${newClass} bg-formaColor text-start top-16 fixed lg:w-[20%] md:w-[25%] sm:w-[30%] w-[60%] h-[100vh] p-5`}
     >
       {adminLinks.map((item, index) => {
         return (
           <li
             key={index}
-            className={`text-white hover:text-blue-500 ${
+            className={`text-white w-fit hover:bg-blue-500/50 rounded-md ${
               path === item.url && "!text-blue-500"
             } transition-all duration-100`}
           >
-            <Link to={item.url} className="w-full h-full p-2">
+            <Link to={item.url} className="p-2">
               {item.title}
             </Link>
           </li>

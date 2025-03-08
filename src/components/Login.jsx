@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   return (
-    <div className={`${styles.container} h-[100vh] bg-slate-100`}>
+    <div className={`${styles.container} mx-auto h-[100vh] bg-slate-100`}>
       <div
         className={`max-w-[380px] w-[310px] sm:w-full text-center absolute translate-y-[-50%] translate-x-[-50%] left-[50%] top-[50%] bg-white rounded-lg border-2 card-box-shadow p-4 ${styles.fCol}`}
       >

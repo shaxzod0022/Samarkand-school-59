@@ -5,13 +5,13 @@ import { Outlet } from "react-router";
 
 const StudentPanel = () => {
   return (
-    <>
+    <div className="max-w-[1700px] mx-auto">
       <Navbar />
       <div className={`${styles.container} mt-32`}>
         <Outlet />
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
