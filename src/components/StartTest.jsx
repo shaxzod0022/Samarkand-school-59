@@ -158,7 +158,7 @@ const StartTest = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-white">
+    <div className="flex py-10 p-5 items-center justify-center bg-white">
       <div className="lg:w-[60%] w-full">
         <h2 className="text-2xl font-semibold text-center mb-5">
           Fan bo‘yicha testlar
