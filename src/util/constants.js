@@ -6,18 +6,22 @@ export const footerLinks = {
     {
       url: "",
       linkTitle: telegram,
+      title: "Telegram",
     },
     {
       url: "",
       linkTitle: instagram,
+      title: "Instagram",
     },
     {
       url: "",
       linkTitle: whatsapp,
+      title: "Whatsapp",
     },
     {
       url: "",
       linkTitle: youtube,
+      title: "You Tube",
     },
   ],
 };

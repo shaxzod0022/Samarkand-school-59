@@ -9,7 +9,9 @@ const Footer = () => {
   const navigate = useNavigate();
   return (
     <div className={`bg-formaColor ${styles.container} pt-8 pb-3`}>
-      <div className={`${styles.fArround} jus !items-start flex-wrap gap-10 mb-6`}>
+      <div
+        className={`${styles.fArround} jus !items-start flex-wrap gap-10 mb-6`}
+      >
         <div
           className={`${styles.fStart} !justify-center cursor-pointer flex-wrap gap-4`}
           onClick={() => navigate("/home_page")}
@@ -43,18 +45,15 @@ const Footer = () => {
                     <li key={linkidx} className={`${styles.link}`}>
                       <Link
                         to={link.url}
-                        className="cursor-pointer sm:text-[16px] text-[14px] hover:text-slate-500"
+                        className={`${styles.fStart} gap-3 cursor-pointer sm:text-[16px] text-[14px] hover:text-slate-500`}
                         target="blank"
                       >
-                        {footerLinks.title === "Bog'lanish" ? (
-                          <img
-                            className="w-[40px] h-[40px] hover:scale-110 rounded-full"
-                            src={link.linkTitle}
-                            alt=""
-                          />
-                        ) : (
-                          link.linkTitle
-                        )}
+                        <img
+                          className="w-[40px] h-[40px] hover:scale-110 rounded-full"
+                          src={link.linkTitle}
+                          alt=""
+                        />
+                        <span className="font-semibold">{link.title}</span>
                       </Link>
                     </li>
                   );
