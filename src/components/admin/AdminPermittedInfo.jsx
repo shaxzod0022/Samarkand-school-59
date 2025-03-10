@@ -83,6 +83,7 @@ const AdminPermittedInfo = () => {
                       name={item.name}
                       value="Erkak"
                       checked={adminData[item.name] === "Erkak"}
+                      className="cursor-pointer"
                       onChange={handleChange}
                       required
                     />
@@ -94,6 +95,7 @@ const AdminPermittedInfo = () => {
                       name={item.name}
                       value="Ayol"
                       checked={adminData[item.name] === "Ayol"}
+                      className="cursor-pointer"
                       onChange={handleChange}
                       required
                     />
@@ -112,7 +114,11 @@ const AdminPermittedInfo = () => {
             </div>
           ))}
         </div>
-        <Button disabled={isLoad} type={"submit"} title={"Yangilash"} />
+        <Button
+          disabled={isLoad}
+          type={"submit"}
+          title={isLoad ? <span className="btns__loader"></span> : "Yangilash"}
+        />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

@@ -15,7 +15,7 @@ const SubjectTestsData = () => {
   const [fullTestData, setFullTestData] = useState();
   const [updateHidden, setUpdateHidden] = useState(false);
   const [fullTestHidden, setFullTestHidden] = useState(false);
-  const [isLoad, setIsLoad] = useState(false);
+  const [isLoad, setIsLoad] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const SubjectTestsData = () => {
   }, [id]);
 
   const deleteTest = async (testId) => {
-    setIsLoad(true);
+    setIsLoad(testId);
     try {
       const response = await axios.delete(
         `https://schoole-59.onrender.com/api/tests/delete-test/${testId}`
@@ -43,13 +43,15 @@ const SubjectTestsData = () => {
     } catch (error) {
       setError(error);
     } finally {
-      setIsLoad(false);
+      setIsLoad(null);
     }
   };
 
-  if (testsData.length === 0) {
+  if (!testsData) {
     return (
-      <h2 className={`${styles.p} py-16 text-center`}>Ma'lumot topilmadi</h2>
+      <div className="w-full text-center align-middle py-20">
+        <span className="admin__loader"></span>
+      </div>
     );
   }
 
@@ -104,10 +106,16 @@ const SubjectTestsData = () => {
                 className={`hover:bg-blue-400 !py-1 !px-3 active:bg-blue-500 bg-blue-500`}
               />
               <Button
-                title={`O'chirish`}
+                title={
+                  isLoad === item._id ? (
+                    <span className="btns__loader"></span>
+                  ) : (
+                    `O'chirish`
+                  )
+                }
                 className={`hover:bg-red-400 !py-1 !px-3 active:bg-red-500 bg-red-500`}
                 onClick={() => deleteTest(item._id)}
-                disabled={isLoad}
+                disabled={isLoad === item._id}
               />
               <Button
                 onClick={() => updateTest(item._id)}

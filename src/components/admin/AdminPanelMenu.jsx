@@ -26,7 +26,7 @@ const AdminPanelMenu = ({ newClass }) => {
           <li
             key={index}
             className={`text-white w-fit hover:bg-blue-500/50 rounded-md ${
-              path === item.url && "!text-blue-500"
+              path.split("/").find((i) => i === item.url) && "!text-blue-500"
             } transition-all duration-100`}
           >
             <Link to={item.url} className="p-2">

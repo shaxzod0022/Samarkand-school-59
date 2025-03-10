@@ -120,7 +120,11 @@ const TestAddToSubject = () => {
             </div>
           ))}
         </div>
-        <Button disabled={isLoad} type="submit" title={`Qo'shish`} />
+        <Button
+          disabled={isLoad}
+          type="submit"
+          title={isLoad ? <span className="btns__loader"></span> : `Qo'shish`}
+        />
         <Message errorMessage={error} successMessage={message} />
       </form>
     </>

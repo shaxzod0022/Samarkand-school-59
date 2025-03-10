@@ -87,7 +87,11 @@ const AdminPasswordUpdate = () => {
           className={`${styles.input} ${inputError ? "border-red-400" : ""}`}
         />
         {inputError && <p className="text-red-500">{inputError}</p>}{" "}
-        <Button disabled={isLoad} type={"submit"} title={"Tasdiqlash"} />
+        <Button
+          disabled={isLoad}
+          type={"submit"}
+          title={isLoad ? <span className="btns__loader"></span> : "Tasdiqlash"}
+        />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

@@ -42,7 +42,7 @@ const CompletedTest = ({ hidden, onClose, subjectInfo, submit, disabled }) => {
         <div className="flex justify-between gap-4">
           <Button title="Yo'q" onClick={onClose} className="!bg-red-500" />
           <Button
-            title="Ha"
+            title={disabled ? <span className="btns__loader"></span> : "Ha"}
             className="!bg-green-500"
             onClick={submit}
             disabled={disabled}

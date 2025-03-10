@@ -26,7 +26,7 @@ const TeacherPanelMenu = ({ newClass }) => {
           <li
             key={index}
             className={`text-white hover:bg-blue-500/50 rounded-md w-fit ${
-              path === item.url && "!text-blue-500"
+              path.split("/").find((i) => i === item.url) && "!text-blue-500"
             } transition-all duration-100`}
           >
             <Link to={item.url} className="w-full h-full p-2">

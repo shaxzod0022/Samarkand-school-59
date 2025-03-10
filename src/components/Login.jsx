@@ -108,10 +108,12 @@ const Login = () => {
           )}
           {/* 🔽 **Yangi tugma holati** */}
           <Button
-            title={isLoading ? "Kutib turing yuklanmoqda..." : "Kirish"}
+            title={
+              isLoading ? <span className="btns__loader"></span> : "Kirish"
+            }
             className="w-full"
             type="submit"
-            disabled={isLoading} // ✅ Login paytida tugma bosilmaydi
+            disabled={isLoading}
           />
         </form>
       </div>

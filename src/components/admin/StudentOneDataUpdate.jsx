@@ -78,6 +78,7 @@ const StudentOneDataUpdate = () => {
                             type="radio"
                             name={item.name}
                             value={gender}
+                            className="cursor-pointer"
                             checked={studentData[item.name] === gender}
                             onChange={handleChange}
                             required
@@ -102,7 +103,11 @@ const StudentOneDataUpdate = () => {
             </div>
           ))}
         </div>
-        <Button disabled={isLoad} type={"submit"} title={"Yangilash"} />
+        <Button
+          disabled={isLoad}
+          type={"submit"}
+          title={isLoad ? <span className="btns__loader"></span> : "Yangilash"}
+        />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

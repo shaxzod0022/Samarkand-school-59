@@ -97,7 +97,13 @@ const SubjectOneData = () => {
             o'chib ketadi!
           </p>
           <Button
-            title={`Fanni o'chirish`}
+            title={
+              isLoad ? (
+                <span className="btns__loader"></span>
+              ) : (
+                `Fanni o'chirish`
+              )
+            }
             className={`hover:bg-red-400 active:bg-red-500 bg-red-500`}
             onClick={deleteSubject}
             disabled={isLoad}

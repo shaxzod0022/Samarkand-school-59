@@ -118,7 +118,11 @@ const SubjectOneDataUpdate = () => {
             type="number"
           />
         </div>
-        <Button disabled={isLoad} type="submit" title="Yangilash" />
+        <Button
+          disabled={isLoad}
+          type="submit"
+          title={isLoad ? <span className="btns__loader"></span> : "Yangilash"}
+        />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

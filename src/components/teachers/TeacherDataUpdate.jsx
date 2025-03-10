@@ -77,6 +77,7 @@ const TeacherDataUpdate = () => {
                       type={item.type}
                       name={item.name}
                       value="Erkak"
+                      className="cursor-pointer"
                       checked={teacherData[item.name] === "Erkak"}
                       onChange={handleChange}
                       required
@@ -88,6 +89,7 @@ const TeacherDataUpdate = () => {
                       type={item.type}
                       name={item.name}
                       value="Ayol"
+                      className="cursor-pointer"
                       checked={teacherData[item.name] === "Ayol"}
                       onChange={handleChange}
                       required
@@ -107,7 +109,11 @@ const TeacherDataUpdate = () => {
             </div>
           ))}
         </div>
-        <Button disabled={isLoad} type={"submit"} title={"Yangilash"} />
+        <Button
+          disabled={isLoad}
+          type={"submit"}
+          title={isLoad ? <span className="btns__loader"></span> : "Yangilash"}
+        />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

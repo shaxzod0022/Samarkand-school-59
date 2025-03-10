@@ -141,7 +141,13 @@ const TestUpdate = ({ newClass, testData, onClose }) => {
           ))}
         </div>
         <div className={`${styles.fStart} gap-3`}>
-          <Button disabled={isLoad} type="submit" title={`Yangilash`} />
+          <Button
+            disabled={isLoad}
+            type="submit"
+            title={
+              isLoad ? <span className="btns__loader"></span> : `Yangilash`
+            }
+          />
           <Button
             title={"Bekor qilish"}
             className={`hover:bg-red-400 active:bg-red-500 bg-red-500`}

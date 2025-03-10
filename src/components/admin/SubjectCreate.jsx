@@ -117,7 +117,11 @@ const SubjectCreate = () => {
             type="number"
           />
         </div>
-        <Button disabled={isLoad} type="submit" title="Qo'shish" />
+        <Button
+          disabled={isLoad}
+          type="submit"
+          title={isLoad ? <span className="btns__loader"></span> : "Qo'shish"}
+        />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

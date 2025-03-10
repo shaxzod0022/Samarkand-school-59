@@ -87,7 +87,11 @@ const StudentsPasswordUpdate = () => {
         />
         {inputError && <p className="text-red-500">{inputError}</p>}{" "}
         {/* 🔴 Xatolik chiqarish */}
-        <Button disabled={isLoad} type={"submit"} title={"Tasdiqlash"} />
+        <Button
+          disabled={isLoad}
+          type={"submit"}
+          title={isLoad ? <span className="btns__loader"></span> : "Tasdiqlash"}
+        />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>

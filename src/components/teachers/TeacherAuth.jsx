@@ -108,7 +108,9 @@ const TeacherAuth = () => {
             </span>
           )}
           <Button
-            title={isLoading ? "Kutib turing yuklanmoqda..." : "Kirish"}
+            title={
+              isLoading ? <span className="btns__loader"></span> : "Kirish"
+            }
             className="w-full"
             type={"submit"}
             disabled={isLoading}

@@ -84,7 +84,7 @@ const Test = () => {
         {/* Ruxsat bo'lsa testni boshlash tugmachasi chiqadi */}
         {checkSubjectAccess ? (
           <Button
-            title="Testni boshlash"
+            title={"Testni boshlash"}
             onClick={() => navigate(`/start_test_page/${subjectData._id}`)}
           />
         ) : (

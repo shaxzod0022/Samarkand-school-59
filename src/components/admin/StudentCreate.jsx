@@ -68,6 +68,7 @@ const StudentCreate = () => {
                       type={item.type}
                       name={item.name}
                       value="Erkak"
+                      className="cursor-pointer"
                       checked={studentData[item.name] === "Erkak"}
                       onChange={handleChange}
                       required
@@ -79,6 +80,7 @@ const StudentCreate = () => {
                       type={item.type}
                       name={item.name}
                       value="Ayol"
+                      className="cursor-pointer"
                       checked={studentData[item.name] === "Ayol"}
                       onChange={handleChange}
                       required
@@ -98,7 +100,11 @@ const StudentCreate = () => {
             </div>
           ))}
         </div>
-        <Button disabled={isLoad} type={"submit"} title={"Qo'shish"} />
+        <Button
+          disabled={isLoad}
+          type={"submit"}
+          title={isLoad ? <span className="btns__loader"></span> : "Qo'shish"}
+        />
       </form>
       <Message successMessage={message} errorMessage={error} />
     </div>
