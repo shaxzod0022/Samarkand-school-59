@@ -16,6 +16,7 @@ const SubjectTestsData = () => {
   const [updateHidden, setUpdateHidden] = useState(false);
   const [fullTestHidden, setFullTestHidden] = useState(false);
   const [isLoad, setIsLoad] = useState(null);
+  const [hidden, setHidden] = useState(3);
   const { id } = useParams();
 
   useEffect(() => {
@@ -68,18 +69,18 @@ const SubjectTestsData = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className={`${styles.fCol} w-full`}>
       <h2 className={`${styles.heading2} text-center mb-3`}>Testlar</h2>
       <div className={`w-full mb-6 ${styles.fBetween} gap-7 !items-start`}>
-        {testsData.map((item) => (
+        {testsData.slice(0, hidden).map((item) => (
           <div
             key={item._id}
-            className={`${styles.fCol} gap-1 md:w-[46%] lg:w-[30%] w-full border-2 rounded-md p-5`}
+            className={`${styles.fCol} gap-1 md:w-[46%] lg:w-[31%] w-full border-2 rounded-md p-5`}
           >
             <p className={`${styles.paragraph} !font-normal w-full`}>
               Savol:{" "}
               <span className="font-semibold">
-                {item.question.slice(0, 50)}...
+                {item.question.slice(0, 20)}...
               </span>
             </p>
             <p className={`${styles.paragraph} w-full`}>
@@ -126,6 +127,10 @@ const SubjectTestsData = () => {
           </div>
         ))}
       </div>
+      <Button
+        title={hidden === 3 ? "Hammasini ko'rsatish" : "Kamroq ko'rsatish"}
+        onClick={() => setHidden((i) => (i === 3 ? testsData.length : 3))}
+      />
       <Message successMessage={message} errorMessage={error} />
       <TestUpdate
         newClass={updateHidden}
