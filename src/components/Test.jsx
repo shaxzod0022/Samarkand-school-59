@@ -71,7 +71,7 @@ const Test = () => {
   }
 
   return (
-    <div className={`flex flex-wrap items-center bg-white mb-10 h-[58vh]`}>
+    <div className={`flex flex-wrap items-center bg-white mb-10`}>
       <div
         className={`flex items-center flex-col text-center md:w-[50%] w-full sm:p-10 p-2`}
       >
