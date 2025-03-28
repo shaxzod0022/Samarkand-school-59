@@ -11,6 +11,7 @@ const Test = () => {
   const [subjectData, setSubjectData] = useState(null);
   const [checkSubjectAccess, setCheckSubjectAccess] = useState(null);
   const [studentId, setStudentId] = useState(null);
+  const [maxAllowedTests, setMaxAllowedTests] = useState(null); // Ruxsat berilgan testlar soni
 
   useEffect(() => {
     const storeStudentData = sessionStorage.getItem("studentData");
@@ -42,10 +43,17 @@ const Test = () => {
         const response = await axios.get(
           `https://schoole-59.onrender.com/api/subject-access/check-subject-access/${studentId}/${subjectId}`
         );
-        setCheckSubjectAccess(response.data);
+
+        const accessData = response.data;
+        setCheckSubjectAccess(accessData);
+
+        if (accessData.allowed !== null) {
+          setMaxAllowedTests(accessData.allowed);
+          sessionStorage.setItem("maxAllowedTests", accessData.allowed);
+        }
       } catch (error) {
         console.error("Ruxsatni tekshirishda xatolik:", error);
-        setCheckSubjectAccess(false); // Xatolik bo'lsa, ruxsat yo'q deb ko'rsatamiz
+        setCheckSubjectAccess(false);
       }
     };
 
@@ -81,12 +89,17 @@ const Test = () => {
         </h2>
         <p className={`${styles.paragraph} mb-4`}>{subjectData.description}</p>
 
-        {/* Ruxsat bo'lsa testni boshlash tugmachasi chiqadi */}
         {checkSubjectAccess ? (
-          <Button
-            title={"Testni boshlash"}
-            onClick={() => navigate(`/start_test_page/${subjectData._id}`)}
-          />
+          <>
+            <p className="text-green-600 mb-2">
+              Ruxsat berilgan testlar soni:{" "}
+              {maxAllowedTests !== null ? maxAllowedTests : "Cheklanmagan"}
+            </p>
+            <Button
+              title={"Testni boshlash"}
+              onClick={() => navigate(`/start_test_page/${subjectData._id}`)}
+            />
+          </>
         ) : (
           <p className="text-red-500">Test yechishga ruxsat berilmagan!</p>
         )}

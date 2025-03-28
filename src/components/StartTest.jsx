@@ -17,6 +17,17 @@ const StartTest = () => {
   const [subjectInfo, setSubjectInfo] = useState();
   const [startTime, setStartTime] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [allowedTest, setAllowedtest] = useState();
+
+  const shuffleArray = (array) => {
+    const allowTest = sessionStorage.getItem("maxAllowedTests"); // Ma'lumotni olish
+    if (allowTest) {
+      const allow = JSON.parse(allowTest);
+      setAllowedtest(allow);
+      console.log(allow);
+      return array.slice(0, allow).sort(() => Math.random() - 0.5);
+    }
+  };
 
   useEffect(() => {
     const getSubject = async () => {
@@ -48,12 +59,28 @@ const StartTest = () => {
 
     const getTests = async () => {
       try {
+        const savedTests = sessionStorage.getItem(`shuffledTests-${id}`);
+        if (savedTests) {
+          setTests(JSON.parse(savedTests));
+          return;
+        }
+
         const response = await studentApi.get(`/tests/tests-by-subject/${id}`);
-        setTests(response.data.length !== 0 ? response.data : null);
+        if (response.data.length !== 0) {
+          const shuffledTests = shuffleArray(response.data);
+          sessionStorage.setItem(
+            `shuffledTests-${id}`,
+            JSON.stringify(shuffledTests)
+          );
+          setTests(shuffledTests);
+        } else {
+          setTests(null);
+        }
       } catch (error) {
         console.error("Testlarni olishda xatolik: ", error);
       }
     };
+
     getTests();
 
     const savedData = sessionStorage.getItem("testData");
@@ -88,11 +115,14 @@ const StartTest = () => {
       })
     );
 
+    const completedAt = Date.now(); // Testni tugatgan vaqt
+    const timeTaken = Math.floor((completedAt - startTime) / 1000); // Sekundlarda hisoblash
+
     const testData = {
       studentId: studentId,
       subjectId: id,
       answers,
-      timeTaken: Math.floor((Date.now() - startTime) / 1000),
+      timeTaken,
     };
 
     try {
@@ -105,6 +135,8 @@ const StartTest = () => {
       sessionStorage.removeItem(`testCountdown-${id}`);
       sessionStorage.removeItem(`testStartTime-${id}`);
       sessionStorage.removeItem("testData");
+      sessionStorage.removeItem("maxAllowedTests");
+      sessionStorage.removeItem(`shuffledTests-${id}`);
 
       navigate(`/home_page`);
     } catch (error) {
@@ -112,7 +144,7 @@ const StartTest = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [id, studentId, selectedOptions, startTime, navigate]); 
+  }, [id, studentId, selectedOptions, startTime, navigate]);
 
   useEffect(() => {
     if (countdown !== null && countdown > 0) {
@@ -129,7 +161,7 @@ const StartTest = () => {
     if (countdown === 0) {
       submitTest();
     }
-  }, [countdown, id, submitTest]); // ✅ submitTest dependenciesga qo'shildi
+  }, [countdown, id, submitTest]);
 
   const optionHandle = (questionId, option) => {
     const newSelectedOptions = { ...selectedOptions, [questionId]: option };
@@ -170,7 +202,7 @@ const StartTest = () => {
         </div>
 
         <ul className="flex flex-col gap-5 mb-10">
-          {tests?.map((item, index) => (
+          {tests?.slice(0, allowedTest).map((item, index) => (
             <li
               key={item._id}
               className="rounded-md border-2 border-formaColor"

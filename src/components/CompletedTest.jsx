@@ -11,7 +11,11 @@ const CompletedTest = ({ hidden, onClose, subjectInfo, submit, disabled }) => {
 
   if (!subject) {
     return (
-      <h2 className={`${styles.heading2} ${hidden ? "flex" : "hidden"}`}>
+      <h2
+        className={`${styles.heading2} ${
+          hidden ? "flex" : "hidden"
+        } !test-white fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center`}
+      >
         Yuklanmoqda...
       </h2>
     );
