@@ -52,12 +52,14 @@ const SubjectsData = () => {
               className="md:w-[150px] w-[80px] h-[80px] rounded-full object-cover md:h-[150px]"
             />
             <div className="w-full">
-              <p
-                className={`${styles.paragraph} text-center !font-bold capitalize`}
-              >
-                {item.subjectname}
+              <p className={`${styles.paragraph} text-center !font-bold`}>
+                {item.subjectname.length > 30 ? (
+                  <>{item.subjectname.slice(0, 30)}...</>
+                ) : (
+                  item.subjectname
+                )}
               </p>
-              <p className={`${styles.paragraph} capitalize text-center`}>
+              <p className={`${styles.paragraph} text-center`}>
                 {item.description.length > 30 ? (
                   <>{item.description.slice(0, 30)}...</>
                 ) : (
