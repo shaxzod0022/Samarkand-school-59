@@ -77,7 +77,7 @@ const SubjectOneData = () => {
             className={`${styles.paragraph} w-full !font-bold rounded-lg p-2 bg-slate-200`}
           >
             Fan nomi:{" "}
-            <span className="font-normal capitalize">
+            <span className="font-normal">
               {subject.subjectname}
             </span>
           </p>

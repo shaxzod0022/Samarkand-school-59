@@ -103,14 +103,20 @@ const TestResultStudent = () => {
             key={subject._id}
             className="w-full md:w-[46%] lg:w-[30%] border-2 rounded-md p-5 bg-white"
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mb-2">
               <img
                 src={subject.image}
                 alt={subject.subjectname}
                 className="w-[50px] h-[50px] object-cover rounded-full"
               />
-              <p className="font-semibold capitalize">{subject.subjectname}</p>
+              <p className={`${styles.paragraph} font-semibold`}>
+                {subject.subjectname}
+              </p>
             </div>
+            <p className={`${styles.paragraph}`}>
+              Testga ajratilgan vaqt:{" "}
+              <span className="font-semibold">{subject.duration}</span>
+            </p>
             <ResultSlider results={subject.testResults} />
           </div>
         ))}

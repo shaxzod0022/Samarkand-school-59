@@ -46,11 +46,8 @@ const Test = () => {
 
         const accessData = response.data;
         setCheckSubjectAccess(accessData);
-
-        if (accessData.allowed !== null) {
-          setMaxAllowedTests(accessData.allowed);
-          sessionStorage.setItem("maxAllowedTests", accessData.allowed);
-        }
+        setMaxAllowedTests(accessData.allowed);
+        sessionStorage.setItem("maxAllowedTests", accessData.allowed);
       } catch (error) {
         console.error("Ruxsatni tekshirishda xatolik:", error);
         setCheckSubjectAccess(false);

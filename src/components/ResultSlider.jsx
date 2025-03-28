@@ -31,6 +31,15 @@ const ResultSlider = ({ results }) => {
           </span>
         </p>
         <p className={`${styles.paragraph}`}>
+          Testlar soni:{" "}
+          <span className="font-semibold">
+            {results[currentIndex].testResults.filter((i) => i.isCorrect)
+              .length +
+              results[currentIndex].testResults.filter((i) => !i.isCorrect)
+                .length}
+          </span>
+        </p>
+        <p className={`${styles.paragraph}`}>
           To‘g‘ri javoblar:{" "}
           <span className="font-semibold">
             {

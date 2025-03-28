@@ -17,19 +17,17 @@ const StartTest = () => {
   const [subjectInfo, setSubjectInfo] = useState();
   const [startTime, setStartTime] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [allowedTest, setAllowedtest] = useState();
+  const [allowedTest, setAllowedtest] = useState(null);
 
   const shuffleArray = (array) => {
-    const allowTest = sessionStorage.getItem("maxAllowedTests"); // Ma'lumotni olish
-    if (allowTest) {
-      const allow = JSON.parse(allowTest);
-      setAllowedtest(allow);
-      console.log(allow);
-      return array.slice(0, allow).sort(() => Math.random() - 0.5);
-    }
+    return [...array].sort(() => Math.random() - 0.5);
   };
 
   useEffect(() => {
+    const allowTest = sessionStorage.getItem("maxAllowedTests");
+    // Agar allowTest mavjud bo'lsa, uni number ga aylantiramiz
+    setAllowedtest(allowTest ? JSON.parse(allowTest) : null);
+
     const getSubject = async () => {
       try {
         const response = await studentApi.get("/subjects/subjects-data");
@@ -66,6 +64,7 @@ const StartTest = () => {
         }
 
         const response = await studentApi.get(`/tests/tests-by-subject/${id}`);
+        console.log(response);
         if (response.data.length !== 0) {
           const shuffledTests = shuffleArray(response.data);
           sessionStorage.setItem(
@@ -115,8 +114,8 @@ const StartTest = () => {
       })
     );
 
-    const completedAt = Date.now(); // Testni tugatgan vaqt
-    const timeTaken = Math.floor((completedAt - startTime) / 1000); // Sekundlarda hisoblash
+    const completedAt = Date.now();
+    const timeTaken = Math.floor((completedAt - startTime) / 1000);
 
     const testData = {
       studentId: studentId,
@@ -202,41 +201,47 @@ const StartTest = () => {
         </div>
 
         <ul className="flex flex-col gap-5 mb-10">
-          {tests?.slice(0, allowedTest).map((item, index) => (
-            <li
-              key={item._id}
-              className="rounded-md border-2 border-formaColor"
-            >
-              <div className="flex gap-2 p-2 bg-formaColor rounded-sm text-white">
-                <p>{index + 1}.</p>
-                <p>{item.question}</p>
-              </div>
-              <ul className="p-2">
-                {Object.entries(item.options).map(([key, value]) => (
-                  <li
-                    key={key}
-                    onClick={() => optionHandle(item._id, key)}
-                    className="flex justify-between gap-2 p-1 hover:bg-gray-200 rounded-sm cursor-pointer"
-                  >
-                    <div className="flex gap-2 items-center">
-                      <p className="uppercase">{key}.</p>
-                      <p>{value}</p>
-                    </div>
-                    {selectedOptions[item._id] === key && (
-                      <img src={checkmark} alt="Checked" className="w-5 h-5" />
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
+          {tests
+            ?.slice(0, allowedTest !== null ? allowedTest : tests.length)
+            .map((item, index) => (
+              <li
+                key={item._id}
+                className="rounded-md border-2 border-formaColor"
+              >
+                <div className="flex gap-2 p-2 bg-formaColor rounded-sm text-white">
+                  <p>{index + 1}.</p>
+                  <p>{item.question}</p>
+                </div>
+                <ul className="p-2">
+                  {Object.entries(item.options).map(([key, value]) => (
+                    <li
+                      key={key}
+                      onClick={() => optionHandle(item._id, key)}
+                      className="flex justify-between gap-2 p-1 hover:bg-gray-200 rounded-sm cursor-pointer"
+                    >
+                      <div className="flex gap-2 items-center">
+                        <p className="uppercase">{key}.</p>
+                        <p>{value}</p>
+                      </div>
+                      {selectedOptions[item._id] === key && (
+                        <img
+                          src={checkmark}
+                          alt="Checked"
+                          className="w-5 h-5"
+                        />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
         </ul>
         <Button title="Testni yakunlash" onClick={finishTest} />
       </div>
       <CompletedTest
         hidden={hidden}
         subjectInfo={subjectInfo}
-        onClose={() => setHidden((i) => !i)}
+        onClose={() => setHidden((prev) => !prev)}
         submit={submitTest}
         disabled={isLoading}
       />
