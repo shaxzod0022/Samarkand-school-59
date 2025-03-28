@@ -14,7 +14,7 @@ const AdminPanel = () => {
   return (
     <div className="max-w-[1700px] mx-auto w-full px-0 md:px-[50px]">
       <div
-        className={`text-center fixed top-0 left-1/2 -translate-x-1/2 max-w-[1700px] w-full z-50 px-0 md:px-[60px] lg:px-[100px] text-white bg-formaColor p-5`}
+        className={`text-center fixed top-0 left-1/2 -translate-x-1/2 max-w-[1700px] w-full z-40 px-0 md:px-[60px] lg:px-[100px] text-white bg-formaColor p-5`}
       >
         <button
           onClick={() => setShowModal((prev) => !prev)}
