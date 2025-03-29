@@ -94,9 +94,7 @@ const TestResultStudent = () => {
         Ishlagan test natijalari
       </h2>
       <div
-        className={`w-full mb-6 ${styles.fBetween} ${
-          groupedResults.length > 3 ? "!justify-start" : "flex-between"
-        }`}
+        className={`w-full mb-6 ${styles.fBetween} gap-4`}
       >
         {groupedResults.map((subject) => (
           <div
