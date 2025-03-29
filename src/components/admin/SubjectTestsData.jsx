@@ -70,8 +70,10 @@ const SubjectTestsData = () => {
 
   return (
     <div className={`${styles.fCol} w-full`}>
-      <h2 className={`${styles.heading2} text-center mb-3`}>Testlar</h2>
-      <p className={`${styles.paragraph} w-full text-center`}>
+      <h2 className={`${styles.heading2} text-center mb-1`}>Testlar</h2>
+      <p
+        className={`${styles.paragraph} w-full text-center mb-3 font-semibold`}
+      >
         Jami testlar soni: {testsData.length}
       </p>
       <div className={`w-full mb-6 ${styles.fBetween} gap-7 !items-start`}>
