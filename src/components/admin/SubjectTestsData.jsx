@@ -71,6 +71,9 @@ const SubjectTestsData = () => {
   return (
     <div className={`${styles.fCol} w-full`}>
       <h2 className={`${styles.heading2} text-center mb-3`}>Testlar</h2>
+      <p className={`${styles.paragraph}`}>
+        Jami testlar soni: {testsData.length}
+      </p>
       <div className={`w-full mb-6 ${styles.fBetween} gap-7 !items-start`}>
         {testsData.slice(0, hidden).map((item) => (
           <div

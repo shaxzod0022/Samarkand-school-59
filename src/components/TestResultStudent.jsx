@@ -93,9 +93,7 @@ const TestResultStudent = () => {
       <h2 className={`${styles.heading2} text-center mb-3`}>
         Ishlagan test natijalari
       </h2>
-      <div
-        className={`w-full mb-6 ${styles.fBetween} gap-4`}
-      >
+      <div className={`w-full mb-6 ${styles.fBetween} gap-4`}>
         {groupedResults.map((subject) => (
           <div
             key={subject._id}
@@ -113,7 +111,7 @@ const TestResultStudent = () => {
             </div>
             <p className={`${styles.paragraph}`}>
               Testga ajratilgan vaqt:{" "}
-              <span className="font-semibold">{subject.duration}</span>
+              <span className="font-semibold">{subject.duration} daqiqa</span>
             </p>
             <ResultSlider results={subject.testResults} />
           </div>
