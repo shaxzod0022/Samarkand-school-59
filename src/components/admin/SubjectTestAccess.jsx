@@ -108,7 +108,7 @@ const SubjectTestAccess = () => {
                 className="md:w-[60px] w-[40px] h-[40px] rounded-full object-cover md:h-[60px]"
               />
               <p
-                className={`${styles.paragraph} text-center font-bold capitalize`}
+                className={`${styles.paragraph} text-center !font-semibold capitalize`}
               >
                 {item.subjectname}
               </p>
